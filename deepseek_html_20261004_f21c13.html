@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>opus-4-6中转站汇总</title>
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#fff; --text:#111827; --muted:#6b7280;
+    --border:#e5e7eb; --accent:#4f46e5; --ok:#16a34a;
+    --warn:#d97706; --danger:#dc2626;
+    --round: "Yuanti SC","YouYuan","Hiragino Maru Gothic ProN","Quicksand","Varela Round","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:linear-gradient(135deg,#eef2ff 0%,#f8fafc 40%,#ecfeff 100%);
+    color:var(--text); min-height:100vh;
+  }
+  .wrap{max-width:1700px;margin:0 auto;padding:20px}
+  header{
+    background:rgba(255,255,255,.88); backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.7); border-radius:20px;
+    padding:22px 24px; box-shadow:0 16px 40px rgba(15,23,42,.08);
+    margin-bottom:18px;
+  }
+  h1{margin:0 0 8px; font-size:26px; letter-spacing:.5px; font-family:var(--round);}
+  .sub{color:var(--muted); font-size:13.5px; line-height:1.9}
+  .toolbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px}
+  .toolbar input{
+    flex:1 1 320px; min-width:220px; padding:10px 14px;
+    border:1px solid var(--border); border-radius:12px; outline:none;
+    font-size:14px; background:#fff;
+  }
+  .toolbar input:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(79,70,229,.12)}
+  .chk{
+    display:inline-flex; align-items:center; gap:6px; font-size:13px;
+    color:#374151; background:#fff; border:1px solid var(--border);
+    border-radius:12px; padding:9px 12px; cursor:pointer; user-select:none;
+  }
+  .chk input{accent-color:var(--accent); cursor:pointer}
+  .nav{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+  .nav a{
+    text-decoration:none; color:var(--accent); background:#eef2ff;
+    border:1px solid #e0e7ff; padding:7px 12px; border-radius:999px;
+    font-size:13px; font-weight:600;
+  }
+  .nav a:hover{background:#e0e7ff}
+  section{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:18px; padding:16px; margin:20px 0;
+    box-shadow:0 12px 34px rgba(15,23,42,.05);
+  }
+  h2{margin:4px 0 12px; font-size:19px; display:flex; align-items:center; gap:8px; font-family:var(--round);}
+  h2 .count{
+    font-size:12px; color:var(--muted); font-weight:500;
+    background:#f3f4f6; border-radius:999px; padding:2px 8px;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  .table-wrap{overflow:auto; border:1px solid var(--border); border-radius:14px; -webkit-overflow-scrolling:touch}
+  table{
+    width:100%; border-collapse:collapse;
+    font-size:15px;
+    min-width:1280px; background:#fff;
+  }
+  th,td{padding:11px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; white-space:nowrap}
+  th{
+    background:#eef2ff; color:#312e81; font-weight:700;
+    position:sticky; top:0; z-index:1;
+    font-size:15px;
+  }
+  tbody tr:nth-child(even){background:#fafafa}
+  tbody tr:hover{background:#f0f9ff}
+  td.num,th.num{font-variant-numeric:tabular-nums; font-size:15px}
+
+  td.name, th:first-child{
+    font-family:var(--round);
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:.3px;
+  }
+  td.name a{
+    font-family:var(--round);
+    font-size:17px;
+    font-weight:700;
+  }
+
+  .muted{color:var(--muted); font-size:13px}
+  .badge{
+    display:inline-block; padding:2px 8px; border-radius:999px;
+    font-size:12.5px; font-weight:700; line-height:1.7; margin-right:4px;
+  }
+  .badge.danger{background:#fee2e2; color:#b91c1c}
+  .badge.warn{background:#fef3c7; color:#92400e}
+  .badge.ok{background:#dcfce7; color:#166534}
+  .badge.info{background:#dbeafe; color:#1d4ed8}
+  .badge.muted{background:#f3f4f6; color:#4b5563}
+  tr.is-dead td{opacity:.72}
+  tr.is-dead .name{color:#9ca3af; text-decoration:line-through}
+  tr.is-dead:hover td{opacity:1}
+  tr.very-cheap td{background-color:#86efac !important;}
+  tr.cheap td{background-color:#bfdbfe !important;}
+  tr.mid-cheap td{background-color:#fde68a !important;}
+  tr.very-cheap:hover td{background-color:#4ade80 !important;}
+  tr.cheap:hover td{background-color:#93c5fd !important;}
+  tr.mid-cheap:hover td{background-color:#fcd34d !important;}
+  .foot{color:var(--muted); font-size:12.5px; line-height:1.9; padding:12px 4px 30px}
+  .empty{display:none; text-align:center; color:var(--muted); padding:24px; font-size:14px}
+  .empty.show{display:block}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .legend{
+    display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:13px;
+    align-items:center;
+  }
+  .legend .dot{
+    display:inline-block; width:14px; height:14px; border-radius:4px;
+    border:1px solid #cbd5e1; vertical-align:-2px; margin-right:6px;
+  }
+  @media (max-width:640px){
+    .wrap{padding:12px} header{padding:16px} h1{font-size:21px}
+    section{padding:12px} th,td{padding:8px}
+    table{font-size:14px; min-width:1100px;}
+    th{font-size:14px;}
+    td.num,th.num{font-size:14px;}
+    td.name, th:first-child, td.name a{font-size:16px;}
+    .badge{font-size:11.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>opus-4-6中转站汇总</h1>
+    <div class="sub">
+      表格收录了大部分站子按次和按量 46o 克最便宜的价格，好不好吃不知道，只看便不便宜。<br>
+      一些站子只有按次，是因为按量的贵不记入。一些价格按次按量都贵所以不收录。<br>
+      注意 k 克价格波动大，用之前记得看价格对不对。<br>
+      已按按次价格从低到高排序；按量站无按次价，按按量输入从低到高排序。
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:#86efac"></span>绿 = 极便宜：Yxmagent、Aipm</span>
+      <span><span class="dot" style="background:#bfdbfe"></span>蓝 = 便宜：Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝</span>
+      <span><span class="dot" style="background:#fde68a"></span>黄 = 中等偏便宜：Leostudio、Hyacapi、云舟、沉默、Strait</span>
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="搜索站名 / 价格 / 状态，例如：无签到、Bearlab、10r起充、死了">
+      <label class="chk"><input type="checkbox" id="hideDead"> 隐藏已死 / 没了</label>
+      <label class="chk"><input type="checkbox" id="onlySign"> 只看有签到</label>
+      <span class="muted" id="cnt"></span>
+    </div>
+    <div class="nav">
+      <a href="#dual">一、按次 &amp; 按量</a>
+      <a href="#percall">二、按次</a>
+      <a href="#usage">三、按量</a>
+    </div>
+  </header>
+
+  <!-- ================= 一、按次 & 按量 ================= -->
+  <section id="dual">
+    <h2>一、按次 &amp; 按量 <span class="count">18 条</span></h2>
+    <div class="table-wrap">
+      <table data-table>
+        <thead>
+          <tr>
+            <th>站名</th>
+            <th class="num">按次</th>
+            <th class="num">按量输入</th>
+            <th class="num">按量输出</th>
+            <th class="num">缓存读取</th>
+            <th class="num">缓存写入</th>
+            <th>起充</th>
+            <th>签到</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cheap"><td class="name"><a href="https://bearlab.ai/sign-up?aff=keH0" target="_blank" rel="noopener">Bearlab</a></td><td class="num">0.03</td><td class="num">0.25</td><td class="num">1.25</td><td class="num">0.025</td><td class="num">0.3125</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://zero.cat/sign-up?aff=d5uo" target="_blank" rel="noopener">Zerocat</a></td><td class="num">0.04</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.03</td><td class="num">0.375</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://api.yuyanjia.top/sign-up?aff=mdIn" target="_blank" rel="noopener">预言家</a></td><td class="num">0.05（死了）</td><td class="num">1.5</td><td class="num">7.5</td><td class="num">0.15</td><td class="num">1.875</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td><span class="badge danger">已死</span></td></tr>
+          <tr><td class="name"><a href="https://naapi.cc/register?aff=eIAg" target="_blank" rel="noopener">鈉 API | ナトリウム</a></td><td class="num">0.05</td><td class="num">1.2500</td><td class="num">6.25</td><td class="num">0.125</td><td class="num">缓存创建 1.5625<br>1h缓存创建 2.5</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.rua.chat/sign-up?aff=7pvN" target="_blank" rel="noopener">Rua</a></td><td class="num">0.06</td><td class="num">2.5</td><td class="num">12.5</td><td class="num">2.5</td><td class="num">3.125</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://noir.blacknoir.cn/sign-up?aff=oCIz" target="_blank" rel="noopener">Noir</a></td><td class="num">0.06</td><td class="num">1</td><td class="num">3.75</td><td class="num">0.1</td><td class="num">1</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://xingya.site/sign-up?aff=LIfq" target="_blank" rel="noopener">星芽</a></td><td class="num">0.06</td><td class="num">1</td><td class="num">5</td><td class="num">0.1</td><td class="num">1.35</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://az.zlapi.vip/register?aff=qrgL" target="_blank" rel="noopener">宅恋</a></td><td class="num">0.06</td><td class="num">1.12</td><td class="num">10.12</td><td class="num">0.15</td><td class="num">1.5</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://luckylunch.cc/register?aff=ROlB" target="_blank" rel="noopener">幸运午餐</a></td><td class="num">0.06</td><td class="num">1.25</td><td class="num">6.25</td><td class="num">1.57</td><td class="num">0.125</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://www.molytea.ccwu.cc/sign-up?aff=lKUJ" target="_blank" rel="noopener">茉莉冰茶</a></td><td class="num">0.06</td><td class="num">1.5<br><span class="muted">另档 1.4</span></td><td class="num">7.5<br><span class="muted">另档 7</span></td><td class="num">0.15<br><span class="muted">另档 0.14</span></td><td class="num">3.75<br><span class="muted">另档 1.82</span></td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td><span class="muted">两档按量</span></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://liangxinapi.top/sign-up?aff=d2IH" target="_blank" rel="noopener">良心</a></td><td class="num">0.06</td><td class="num">0.35</td><td class="num">1.75</td><td class="num">0.035</td><td class="num">5M：0.4375<br>1H：0.7</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.sixai.cc/sign-up?aff=yAtb" target="_blank" rel="noopener">Sixal</a></td><td class="num">0.06</td><td class="num">1.5</td><td class="num">7.5</td><td class="num">0.15</td><td class="num">1.875</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://api.tghan.xyz/register?aff=E34P" target="_blank" rel="noopener">小雨云</a></td><td class="num">0.07（死了）</td><td class="num">1.6</td><td class="num">8</td><td class="num">0.35</td><td class="num">2.5</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge danger">已死</span></td></tr>
+          <tr><td class="name"><a href="https://api.tuturu.dev/sign-up?aff=tzwP" target="_blank" rel="noopener">tuturu</a></td><td class="num">0.073</td><td class="num">1</td><td class="num">5</td><td class="num">0.1</td><td class="num">1.25</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://ksir.fun/sign-up?aff=v2i1DkEz" target="_blank" rel="noopener">Ksir的小饭锅</a></td><td class="num">0.08</td><td class="num">0.45</td><td class="num">2.25</td><td class="num">0.045</td><td class="num">0.5625</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api1.apistar.com.cn/sign-up?aff=JO1S" target="_blank" rel="noopener">星辰</a></td><td class="num">0.085</td><td class="num">2</td><td class="num">10</td><td class="num">0.2</td><td class="num">2.5</td><td>1r起充；2r试吃</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.juziai.cc/sign-up?aff=bOxk" target="_blank" rel="noopener">橘子</a></td><td class="num">0.15</td><td class="num">3</td><td class="num">15</td><td class="num">0.3</td><td class="num">3.75</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.jixiangai.xyz/sign-up?aff=Un96" target="_blank" rel="noopener">即享</a></td><td class="num">0.25</td><td class="num">1.5</td><td class="num">5</td><td class="num">0.1</td><td class="num">1.25</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 二、按次 ================= -->
+  <section id="percall">
+    <h2>二、按次 <span class="count">33 条</span></h2>
+    <div class="table-wrap">
+      <table data-table>
+        <thead>
+          <tr>
+            <th>站名</th>
+            <th class="num">按次</th>
+            <th class="num">按量输入</th>
+            <th class="num">按量输出</th>
+            <th class="num">缓存读取</th>
+            <th class="num">缓存写入</th>
+            <th>起充</th>
+            <th>签到</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="name"><a href="https://vsllm.cc/register?aff=3VEg" target="_blank" rel="noopener">维云</a></td><td class="num">0.02</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>8r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://nova.cervus.cn/register?aff=UNih" target="_blank" rel="noopener">鹿鹿</a></td><td class="num">0.036</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.qwecc.icu/sign-up?aff=06nT" target="_blank" rel="noopener">哈基鱼</a></td><td class="num">0.04</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api456.me/register?aff=wOJZ" target="_blank" rel="noopener">可萌</a></td><td class="num">0.05</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://www.huaerzi.online/register?aff=Gxjs" target="_blank" rel="noopener">华尔兹</a></td><td class="num">0.052</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.55.al/sign-up?aff=W4kD" target="_blank" rel="noopener">55 逆</a></td><td class="num">0.054</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://open.selart.cc/sign-up?aff=lLPo" target="_blank" rel="noopener">赛艺</a></td><td class="num">0.054</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://cc.cwapi.vip/sign-up?aff=xidO" target="_blank" rel="noopener">刺猬</a></td><td class="num">0.055</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://api.dzzi.ai/sign-up?aff=B1Eh" target="_blank" rel="noopener">肘子</a></td><td class="num">0.0585</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td><span class="badge danger">死了</span></td></tr>
+          <tr><td class="name"><a href="https://x1.ninijoker-api.com/sign-up?aff=mYQX" target="_blank" rel="noopener">Nini</a></td><td class="num">0.0585</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://7up.ing/sign-up?aff=CKuP" target="_blank" rel="noopener">七喜</a></td><td class="num">0.06</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.jumengai.net/sign-up?aff=wGSR" target="_blank" rel="noopener">聚梦</a></td><td class="num">0.06</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://api.zhi.lat/sign-up?aff=L2Ni" target="_blank" rel="noopener">吱吱</a></td><td class="num">0.06</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>没找到充值入口</td><td><span class="badge muted">无签到</span></td><td><span class="badge danger">死了</span></td></tr>
+          <tr><td class="name"><a href="https://api.jiushi.xin/register?aff=LZO3" target="_blank" rel="noopener">玖时</a></td><td class="num">0.065</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://mianyunai.com/sign-up?aff=SwOe" target="_blank" rel="noopener">棉云</a></td><td class="num">0.065</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://ai.doi.pics/sign-up?aff=CstF" target="_blank" rel="noopener">Doi</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.astroflowing.com/sign-up?aff=qAXG" target="_blank" rel="noopener">信书</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://ai.xingheai.cc/sign-up?aff=wxcm" target="_blank" rel="noopener">星河</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://www.baicai.chat/register?aff=8DPo" target="_blank" rel="noopener">小白菜</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td><span class="muted">和奇遇同一家</span></td></tr>
+          <tr><td class="name"><a href="https://www.msuicode.com/sign-up?aff=Hs22" target="_blank" rel="noopener">Msui</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://api.wuyinai.cc/sign-up?aff=1vIM" target="_blank" rel="noopener">雾隐</a></td><td class="num">0.07</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td><span class="badge danger">死了</span></td></tr>
+          <tr><td class="name"><a href="https://sweets.sugarmochi.space/sign-up?aff=outS" target="_blank" rel="noopener">糖糕</a></td><td class="num">0.075</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>没找到充值入口</td><td><span class="badge ok">有签到</span></td><td><span class="badge warn">疑似有瓜</span></td></tr>
+          <tr><td class="name"><a href="https://api.dragonrajai.online/sign-up?aff=Ex3y" target="_blank" rel="noopener">Dragon</a></td><td class="num">0.075</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://www.aladingapi.com/sign-up?aff=Ign3" target="_blank" rel="noopener">阿拉丁</a></td><td class="num">0.08</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://goodreamapi.online/register?aff=gzAi" target="_blank" rel="noopener">好梦gooddream</a></td><td class="num">0.08</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://www.moxin.plus/sign-up?aff=tyah" target="_blank" rel="noopener">墨信</a></td><td class="num">0.08</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="http://love.qiyu221.com:8070/sign-up?aff=0GTD" target="_blank" rel="noopener">奇遇</a></td><td class="num">0.08</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge muted">无试吃</span></td></tr>
+          <tr><td class="name"><a href="https://sllt.uk/" target="_blank" rel="noopener">AI Gen●清风</a></td><td class="num">0.08</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.fuka.win/sign-up?aff=h8kp" target="_blank" rel="noopener">芙卡卡</a></td><td class="num">0.144</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>3r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://ai.juguang.chat/sign-up?aff=IWaM" target="_blank" rel="noopener">聚光</a></td><td class="num">0.16</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://shufulei.net/register?aff=KvPL" target="_blank" rel="noopener">舒芙蕾</a></td><td class="num">0.25</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>2r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://juziqishui.net/register?aff=nBE2" target="_blank" rel="noopener">橘子汽水</a></td><td class="num">0.33</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api2.usora.net/sign-up?aff=JyFN" target="_blank" rel="noopener">Sora</a></td><td class="num">0.45</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 三、按量 ================= -->
+  <section id="usage">
+    <h2>三、按量 <span class="count">18 条</span> <span class="muted" style="font-size:12px;font-weight:400">（按按量输入从低到高）</span></h2>
+    <div class="table-wrap">
+      <table data-table>
+        <thead>
+          <tr>
+            <th>站名</th>
+            <th class="num">按次</th>
+            <th class="num">按量输入</th>
+            <th class="num">按量输出</th>
+            <th class="num">缓存读取</th>
+            <th class="num">缓存写入</th>
+            <th>起充</th>
+            <th>签到</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="very-cheap"><td class="name"><a href="https://yixiaomo.site/sign-up?aff=KCIp" target="_blank" rel="noopener">Yxmagent</a></td><td class="num">—</td><td class="num">0.05</td><td class="num">0.25</td><td class="num">0.005</td><td class="num">0.0625</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge warn">限时</span></td></tr>
+          <tr class="very-cheap"><td class="name"><a href="https://emtf.aipm9527.online/sign-up?aff=9Ghn" target="_blank" rel="noopener">Aipm</a></td><td class="num">—</td><td class="num">0.125</td><td class="num">0.625</td><td class="num">0.0125</td><td class="num">0.25</td><td>6r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://dzhsmartai.com/register?aff=ZWU3H3LVMVFV" target="_blank" rel="noopener">Cccccc</a></td><td class="num">—</td><td class="num">0.25</td><td class="num">1.25</td><td class="num">0.025</td><td class="num">0.3125</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://sub.vcnovb.cn/register?aff=TG5MFYGNKC7A" target="_blank" rel="noopener">Vc</a></td><td class="num">—</td><td class="num">0.25</td><td class="num">1.25</td><td class="num">0.025</td><td class="num">0.3125<br><span class="muted">1h 0.5</span></td><td>2r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="is-dead"><td class="name"><a href="https://server.1432151545.xyz/sign-up?aff=Fbng" target="_blank" rel="noopener">神秘中转站</a></td><td class="num">—</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.04</td><td class="num">0.3</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td><span class="badge danger">没了</span></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://api.yjs.im/sign-up?aff=M0wv" target="_blank" rel="noopener">Jasper</a></td><td class="num">—</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.03</td><td class="num">5m：0.375<br>1h：0.6</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://paidapi.leyanshi.me/sign-up?aff=qLb5" target="_blank" rel="noopener">Zynk（付费）</a></td><td class="num">—</td><td class="num">0.44</td><td class="num">2.2</td><td class="num">0.044</td><td class="num">0.55</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="cheap"><td class="name"><a href="https://zzwsapi.top/sign-up?aff=KUld" target="_blank" rel="noopener">折枝雾逝</a></td><td class="num">—</td><td class="num">0-200k：0.45<br>200k+：0.9</td><td class="num">0-200k：2.25<br>200k+：4.5</td><td class="num">0-200k：0.045<br>200k+：0.09</td><td class="num">0-200k：5M 0.5625 / 1H 0.9<br>200k+：5M 1.125 / 1H 1.8</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge info">阶梯</span></td></tr>
+          <tr class="mid-cheap"><td class="name"><a href="https://api.hyaccom.com/register?aff=4DCLTPUTTDB2" target="_blank" rel="noopener">Hyacapi</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.625</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="mid-cheap"><td class="name"><a href="https://api.leostudio.cc/sign-up?aff=KRUA" target="_blank" rel="noopener">Leostudio</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.125</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr class="mid-cheap"><td class="name"><a href="https://cli.999554.xyz/register?aff=tBrn" target="_blank" rel="noopener">云舟</a></td><td class="num">—</td><td class="num">0.75</td><td class="num">3.75</td><td class="num">0.075</td><td class="num">缓存创建 0.9375<br>1h缓存创建 1.5</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="mid-cheap"><td class="name"><a href="https://api.leostudio.cc/sign-up?aff=KRUA" target="_blank" rel="noopener">沉默</a></td><td class="num">—</td><td class="num">0.75</td><td class="num">3.75</td><td class="num">0.075</td><td class="num">0.9375</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr class="mid-cheap"><td class="name"><a href="https://straitapi.com/sign-up?aff=CJYQ" target="_blank" rel="noopener">Strait</a></td><td class="num">—</td><td class="num">0.8</td><td class="num">4</td><td class="num">0.08</td><td class="num">1</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://api.uu6.top/sign-up?aff=KHlj" target="_blank" rel="noopener">转转</a></td><td class="num">—</td><td class="num">1</td><td class="num">5</td><td class="num">1</td><td class="num">1.25</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://ai.t1qq.com/sign-up?aff=pimA" target="_blank" rel="noopener">应天</a></td><td class="num">—</td><td class="num">1.1</td><td class="num">5.5</td><td class="num">0.11</td><td class="num">1.375</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://zhiyunapi.cc/register?aff=RRb5" target="_blank" rel="noopener">织云</a></td><td class="num">—</td><td class="num">1.5</td><td class="num">7.5</td><td class="num">0.15</td><td class="num">1.875</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
+          <tr><td class="name"><a href="https://foxapi.chat/sign-up?aff=jClVMy" target="_blank" rel="noopener">Foxapi</a></td><td class="num">—</td><td class="num">1.5</td><td class="num">7.5</td><td class="num">0.15</td><td class="num">1.875</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
+          <tr>
+            <td class="name"><a href="https://jiuguan.cloud/sign-up?aff=tALR" target="_blank" rel="noopener">酒馆api</a></td>
+            <td class="num">日常 0.06<br><span class="muted">超出 —</span></td>
+            <td class="num">超出 2.25<br><span class="muted">日常 —</span></td>
+            <td class="num">超出 11.25<br><span class="muted">日常 —</span></td>
+            <td class="num">超出 0.225<br><span class="muted">日常 —</span></td>
+            <td class="num">超出：5M 2.8125 / 1H 4.5<br><span class="muted">日常 —</span></td>
+            <td>1r起充</td>
+            <td><span class="badge ok">有签到</span></td>
+            <td><span class="muted">阶梯：上下文≤32K且输出含思考≤4K 按次 0.06；超出后按量</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="empty" id="empty">没有匹配的站点，换个关键词试试。</div>
+
+  <div class="foot">
+    <b>状态速查：</b><br>
+    已死：肘子、小雨云、雾隐、预言家、吱吱<br>
+    没了：神秘中转站<br>
+    限时：Yxmagent<br>
+    无试吃：奇遇、吱吱<br>
+    没找到充值入口：糖糕、吱吱<br>
+    付费：Zynk<br>
+    拼写：Ksir的小饭锅；Strait；鈉 API | ナトリウム。<br>
+    <b>按量颜色标记：</b>
+    <span style="background:#86efac;padding:1px 6px;border-radius:4px;">绿 = 极便宜（Yxmagent、Aipm）</span>
+    <span style="background:#bfdbfe;padding:1px 6px;border-radius:4px;">蓝 = 便宜（Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝）</span>
+    <span style="background:#fde68a;padding:1px 6px;border-radius:4px;">黄 = 中等偏便宜（Leostudio、Hyacapi、云舟、沉默、Strait）</span>
+  </div>
+</div>
+
+<script>
+  const search = document.getElementById('search');
+  const hideDead = document.getElementById('hideDead');
+  const onlySign = document.getElementById('onlySign');
+  const cnt = document.getElementById('cnt');
+  const empty = document.getElementById('empty');
+
+  function apply() {
+    const q = search.value.trim().toLowerCase();
+    let total = 0;
+
+    document.querySelectorAll('section').forEach(function (section) {
+      let visible = 0;
+      section.querySelectorAll('tbody tr').forEach(function (tr) {
+        let ok = true;
+
+        if (q && !tr.textContent.toLowerCase().includes(q)) ok = false;
+
+        if (ok && hideDead.checked) {
+          const t = tr.textContent;
+          if (t.includes('死了') || t.includes('已死') || t.includes('没了')) ok = false;
+        }
+
+        if (ok && onlySign.checked) {
+          if (!tr.textContent.includes('有签到')) ok = false;
+        }
+
+        tr.style.display = ok ? '' : 'none';
+        if (ok) visible++;
+      });
+      section.style.display = visible ? '' : 'none';
+      total += visible;
+    });
+
+    cnt.textContent = '当前显示 ' + total + ' 个站';
+    empty.classList.toggle('show', total === 0);
+  }
+
+  search.addEventListener('input', apply);
+  hideDead.addEventListener('change', apply);
+  onlySign.addEventListener('change', apply);
+  apply();
+</script>
+</body>
+</html>
