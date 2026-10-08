@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPUS 4.6 中转站汇总 · GOLDEN WIND</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0d0a12;
@@ -14,19 +17,20 @@
     --purple:#7b2d8e;
     --purple-deep:#4a1a5e;
     --magenta:#e83a6b;
+    --name-color:#c2185b;
     --cyan:#3ac8e8;
     --red:#d42a2a;
     --green:#4caf50;
     --text:#2a1f35;
     --muted:#6b5a7a;
-    --manga: "Impact", "Arial Black", "Helvetica Neue", sans-serif;
-    --jojo: "Georgia", "Songti SC", "STSong", serif;
-    --round: "Yuanti SC","YouYuan","Hiragino Maru Gothic ProN","Quicksand","PingFang SC","Microsoft YaHei",sans-serif;
+    --manga: "Varela Round", "Quicksand", "Yuanti SC", "YouYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --jojo:  "Varela Round", "Quicksand", "Yuanti SC", "YouYuan", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --round: "Yuanti SC", "YouYuan", "Varela Round", "Quicksand", "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    font-family:var(--round);
     background:
       radial-gradient(circle at 15% 10%, rgba(123,45,142,.35), transparent 45%),
       radial-gradient(circle at 85% 15%, rgba(212,160,23,.28), transparent 45%),
@@ -39,15 +43,14 @@
     overflow-x:hidden;
   }
 
-  /* 全屏ゴゴゴゴ拟声层 */
   body::before{
     content:"ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ";
     position:fixed;
     top:0; left:0;
     width:100%; height:100vh;
-    font-family:var(--manga);
+    font-family:var(--round);
     font-size:80px;
-    font-weight:900;
+    font-weight:700;
     line-height:1.6;
     letter-spacing:30px;
     color:rgba(245,200,66,.045);
@@ -61,10 +64,9 @@
 
   .wrap{max-width:1700px;margin:0 auto;padding:28px 20px;position:relative;z-index:1}
 
-  /* ========== 顶部 ========== */
   header{
     position:relative;
-    border-radius:0;
+    border-radius:24px;
     padding:50px 40px 40px;
     margin-bottom:28px;
     background:var(--paper);
@@ -86,14 +88,13 @@
     z-index:0;
   }
 
-  /* 标题上方ゴゴゴ */
   .gogogo-top{
     position:absolute;
-    top:10px; left:50%;
+    top:12px; left:50%;
     transform:translateX(-50%);
-    font-family:var(--manga);
-    font-size:18px;
-    font-weight:900;
+    font-family:var(--round);
+    font-size:16px;
+    font-weight:700;
     color:var(--ink);
     letter-spacing:14px;
     opacity:.5;
@@ -102,7 +103,6 @@
     pointer-events:none;
   }
 
-  /* 右上角 Q版布加拉提 */
   .chibi-giorno{
     position:absolute;
     top:12px;
@@ -137,7 +137,6 @@
     display:block;
   }
 
-  /* JOJO 印章 */
   .jojo-stamp{
     position:absolute;
     top:142px;
@@ -152,10 +151,10 @@
     color:#fff;
     border:4px solid var(--ink);
     border-radius:50%;
-    font-family:var(--manga);
+    font-family:var(--round);
     font-size:16px;
-    font-weight:900;
-    letter-spacing:0;
+    font-weight:800;
+    letter-spacing:1px;
     line-height:1;
     text-align:center;
     transform:rotate(-12deg);
@@ -173,12 +172,11 @@
     position:relative; z-index:2;
     margin:0 0 20px;
     padding-top:14px;
-    font-size:56px;
-    line-height:1.05;
-    letter-spacing:3px;
-    font-family:var(--jojo);
-    font-weight:900;
-    font-style:italic;
+    font-size:52px;
+    line-height:1.15;
+    letter-spacing:2px;
+    font-family:var(--round);
+    font-weight:800;
     text-align:center;
     color:var(--gold);
     text-transform:uppercase;
@@ -187,29 +185,27 @@
     text-shadow:
       6px 6px 0 var(--magenta),
       12px 12px 0 rgba(123,45,142,.5);
-    transform:skew(-6deg);
+    transform:skew(-4deg);
   }
   h1::before{
     content:"★";
-    font-size:38px;
+    font-size:36px;
     margin-right:18px;
     color:var(--gold);
     -webkit-text-stroke:2px var(--ink);
     vertical-align:middle;
-    font-style:normal;
     display:inline-block;
-    transform:skew(6deg);
+    transform:skew(4deg);
   }
   h1::after{
     content:"★";
-    font-size:38px;
+    font-size:36px;
     margin-left:18px;
     color:var(--magenta);
     -webkit-text-stroke:2px var(--ink);
     vertical-align:middle;
-    font-style:normal;
     display:inline-block;
-    transform:skew(6deg);
+    transform:skew(4deg);
   }
 
   .sub{
@@ -219,7 +215,7 @@
     padding:18px 24px;
     background:#fff;
     border:4px solid var(--ink);
-    border-radius:0;
+    border-radius:20px;
     color:var(--text);
     font-size:13.5px;
     line-height:2;
@@ -241,9 +237,9 @@
     align-items:center;
     background:#fff;
     border:4px solid var(--ink);
-    border-radius:0;
+    border-radius:999px;
     padding:7px 18px 7px 13px;
-    font-size:12.5px;
+    font-size:13px;
     color:var(--text);
     font-weight:700;
     font-family:var(--round);
@@ -258,7 +254,7 @@
   }
   .legend .dot{
     width:12px; height:12px;
-    border-radius:0;
+    border-radius:50%;
     display:inline-block;
     margin-right:8px;
     flex-shrink:0;
@@ -269,14 +265,16 @@
     background:var(--ink) !important;
     border:4px solid var(--ink) !important;
     box-shadow:4px 4px 0 var(--gold) !important;
-    padding:8px 18px !important;
-    font-size:14px;
+    padding:10px 18px !important;
+    font-size:15px;
     color:var(--gold) !important;
     text-align:center;
     justify-content:center;
-    font-family:var(--manga);
-    letter-spacing:1px;
+    font-family:var(--round);
+    font-weight:800;
+    letter-spacing:2px;
     transform:rotate(.3deg);
+    border-radius:999px !important;
   }
   .legend .warn-text:hover{transform:rotate(.3deg) translate(-2px,-2px) !important;}
 
@@ -290,16 +288,17 @@
     flex:1 1 320px; min-width:220px; max-width:560px;
     padding:14px 20px;
     border:4px solid var(--ink);
-    border-radius:0;
+    border-radius:14px;
     outline:none;
     font-size:14px;
     background:#fff;
     color:var(--text);
     font-family:var(--round);
+    font-weight:600;
     box-shadow:5px 5px 0 var(--purple);
     transition:.2s;
   }
-  .toolbar input::placeholder{color:#9a8aaa}
+  .toolbar input::placeholder{color:#9a8aaa; font-weight:500;}
   .toolbar input:focus{
     box-shadow:5px 5px 0 var(--gold);
     transform:translate(-1px,-1px);
@@ -309,7 +308,7 @@
     font-size:13px; color:var(--text); font-weight:700;
     background:#fff;
     border:4px solid var(--ink);
-    border-radius:0;
+    border-radius:14px;
     padding:13px 18px;
     cursor:pointer; user-select:none;
     font-family:var(--round);
@@ -318,7 +317,7 @@
   }
   .chk:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--gold);}
   .chk input{accent-color:var(--magenta); cursor:pointer}
-  .muted{color:var(--muted); font-size:13px}
+  .muted{color:var(--muted); font-size:13px; font-weight:600;}
 
   .nav{
     display:flex; gap:16px; flex-wrap:wrap;
@@ -329,15 +328,14 @@
   .nav a{
     text-decoration:none;
     padding:14px 32px;
-    font-size:15px;
-    font-weight:900;
+    font-size:16px;
+    font-weight:800;
     letter-spacing:1px;
     color:var(--ink);
     background:var(--gold);
     border:4px solid var(--ink);
-    border-radius:0;
-    font-family:var(--manga);
-    text-transform:uppercase;
+    border-radius:999px;
+    font-family:var(--round);
     transition:.2s;
     box-shadow:6px 6px 0 var(--ink);
     position:relative;
@@ -353,7 +351,9 @@
     color:var(--ink);
     transition:.3s;
     display:inline-block;
+    font-weight:800;
   }
+  .nav a:nth-child(2)::before{color:#fff;}
   .nav a:hover::before{
     content:"無駄";
     transform:rotate(-8deg);
@@ -370,12 +370,11 @@
     75%{transform:translate(-2px,-2px) rotate(1.5deg);}
   }
 
-  /* ========== 表格卡片 ========== */
   section{
     position:relative;
     background:var(--paper);
     border:5px solid var(--ink);
-    border-radius:0;
+    border-radius:22px;
     padding:24px;
     margin:30px 0;
     box-shadow:
@@ -397,10 +396,10 @@
     content:"ドドド";
     position:absolute;
     top:8px; right:20px;
-    font-family:var(--manga);
-    font-size:22px;
-    font-weight:900;
-    color:rgba(232,58,107,.25);
+    font-family:var(--round);
+    font-size:20px;
+    font-weight:800;
+    color:rgba(232,58,107,.28);
     letter-spacing:6px;
     pointer-events:none;
     z-index:0;
@@ -410,46 +409,42 @@
   h2{
     position:relative; z-index:1;
     margin:0 0 18px;
-    font-size:24px;
+    font-size:22px;
     display:flex; align-items:center; gap:12px;
-    font-family:var(--manga);
+    font-family:var(--round);
     color:var(--ink);
-    font-weight:900;
+    font-weight:800;
     letter-spacing:1px;
-    text-transform:uppercase;
-    -webkit-text-stroke:1.5px var(--ink);
-    paint-order:stroke fill;
     text-shadow:3px 3px 0 var(--gold);
   }
   h2::before{
     content:"ゴ";
     color:var(--magenta);
-    font-size:22px;
-    -webkit-text-stroke:1px var(--ink);
-    font-style:normal;
+    font-size:20px;
     animation:gogoFlash 1.6s ease-in-out infinite;
+    font-weight:800;
   }
   @keyframes gogoFlash{
     0%,100%{opacity:1; transform:translateY(0);}
     50%{opacity:.5; transform:translateY(-2px);}
   }
   h2 .count{
-    font-size:11.5px;
+    font-size:12px;
     color:var(--ink);
-    font-weight:900;
+    font-weight:800;
     background:var(--gold);
     border:3px solid var(--ink);
-    border-radius:0;
+    border-radius:999px;
     padding:3px 12px;
-    font-family:var(--manga);
+    font-family:var(--round);
     box-shadow:3px 3px 0 var(--ink);
-    -webkit-text-stroke:0;
+    letter-spacing:1px;
   }
   .table-wrap{
     position:relative; z-index:1;
     overflow:auto;
     border:4px solid var(--ink);
-    border-radius:0;
+    border-radius:16px;
     -webkit-overflow-scrolling:touch;
     background:#fff;
     box-shadow:5px 5px 0 var(--purple);
@@ -458,25 +453,24 @@
     width:100%;
     border-collapse:separate;
     border-spacing:0;
-    font-size:15px;
+    font-size:14.5px;
     min-width:1280px;
     background:#fff;
   }
   thead th{
     background:var(--ink);
     color:var(--gold);
-    font-weight:900;
+    font-weight:800;
     text-align:left;
     padding:14px 16px;
     border-bottom:4px solid var(--gold);
-    font-size:12.5px;
-    letter-spacing:1px;
+    font-size:13.5px;
+    letter-spacing:1.5px;
     white-space:nowrap;
     position:sticky;
     top:0;
     z-index:1;
-    font-family:var(--manga);
-    text-transform:uppercase;
+    font-family:var(--round);
   }
   tbody td{
     padding:13px 16px;
@@ -485,43 +479,45 @@
     white-space:nowrap;
     color:var(--text);
     transition:background .15s;
+    font-family:var(--round);
+    font-weight:600;
   }
   tbody tr:hover td{background:#fef9e8}
   tbody tr:last-child td{border-bottom:none}
-  td.num,th.num{font-variant-numeric:tabular-nums; font-size:15px}
+  td.num,th.num{font-variant-numeric:tabular-nums; font-size:14.5px; font-weight:700;}
 
+  /* ========== 站名：加大 + 换色 ========== */
   td.name, th:first-child{
-    font-family:var(--manga);
-    font-size:16px;
-    font-weight:900;
+    font-family:var(--round);
+    font-size:18px;
+    font-weight:800;
     letter-spacing:.5px;
-    text-transform:uppercase;
     position:relative;
   }
   td.name a{
-    font-family:var(--manga);
-    font-size:16px;
-    font-weight:900;
-    color:var(--purple-deep);
+    font-family:var(--round);
+    font-size:18px;
+    font-weight:800;
+    color:var(--name-color);
     text-decoration:none;
     transition:.15s;
-    text-transform:uppercase;
     position:relative;
     display:inline-block;
+    letter-spacing:.5px;
   }
   td.name a::after{
     content:"ゴゴゴ";
     position:absolute;
     top:-14px; left:100%;
     margin-left:6px;
-    font-size:9px;
-    font-family:var(--manga);
+    font-size:10px;
+    font-family:var(--round);
+    font-weight:800;
     color:var(--red);
     letter-spacing:-2px;
     opacity:0;
     transition:.25s;
     pointer-events:none;
-    -webkit-text-stroke:0;
   }
   td.name a:hover::after{opacity:1; top:-16px;}
   td.name a:hover{
@@ -530,19 +526,19 @@
     text-decoration-thickness:3px;
     text-underline-offset:3px;
   }
+  tr.is-dead .name a{color:#a89bb8;}
 
   .badge{
     display:inline-block;
     padding:3px 10px;
-    border-radius:0;
-    font-size:11px;
-    font-weight:900;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
     line-height:1.7;
     margin-right:5px;
     border:3px solid var(--ink);
     white-space:nowrap;
-    font-family:var(--manga);
-    text-transform:uppercase;
+    font-family:var(--round);
     letter-spacing:.5px;
   }
   .badge.danger{background:var(--red); color:#fff;}
@@ -553,7 +549,7 @@
 
   tr.is-dead td{opacity:.5}
   tr.is-dead .name{text-decoration:line-through}
-  tr.is-dead .name a{color:#a89bb8; text-decoration:line-through;}
+  tr.is-dead .name a{text-decoration:line-through;}
   tr.is-dead .name a::after{content:"";}
   tr.is-dead:hover td{opacity:.85}
 
@@ -570,29 +566,31 @@
     line-height:2.1;
     padding:20px 6px 30px;
     font-family:var(--round);
+    font-weight:600;
   }
-  .foot b{color:var(--purple-deep); font-family:var(--manga); font-style:normal;}
+  .foot b{color:var(--purple-deep); font-family:var(--round); font-weight:800; font-size:14px; letter-spacing:.5px;}
   .empty{
     display:none;
     text-align:center;
     color:var(--muted);
     padding:36px;
-    font-size:14px;
+    font-size:15px;
     background:#fff;
-    border-radius:0;
+    border-radius:18px;
     border:4px dashed var(--ink);
-    font-family:var(--manga);
-    text-transform:uppercase;
+    font-family:var(--round);
+    font-weight:700;
+    letter-spacing:1px;
   }
   .empty.show{display:block}
 
   ::-webkit-scrollbar{width:12px;height:12px;}
   ::-webkit-scrollbar-track{background:var(--ink);}
-  ::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid var(--ink);}
+  ::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid var(--ink);border-radius:8px;}
   ::-webkit-scrollbar-thumb:hover{background:var(--magenta);}
 
   @media (max-width:900px){
-    h1{font-size:34px; transform:skew(-4deg);}
+    h1{font-size:36px; transform:skew(-3deg);}
     h1::before,h1::after{font-size:22px; margin:0 8px;}
     .chibi-giorno{width:90px;height:90px;top:8px;right:10px;}
     .jojo-stamp{top:108px; right:14px; width:64px; height:64px; font-size:13px;}
@@ -601,21 +599,21 @@
   @media (max-width:640px){
     .wrap{padding:14px 12px}
     header{padding:38px 18px 26px}
-    h1{font-size:22px; -webkit-text-stroke:2px var(--ink); transform:skew(-3deg); letter-spacing:1px;}
+    h1{font-size:24px; -webkit-text-stroke:2px var(--ink); transform:skew(-2deg); letter-spacing:1px;}
     h1::before,h1::after{font-size:14px; margin:0 4px;}
     .chibi-giorno{width:66px;height:66px;top:6px;right:8px;border-width:3px;box-shadow:3px 3px 0 var(--ink),3px 3px 0 5px var(--purple);}
-    .jojo-stamp{top:78px; right:10px; width:48px; height:48px; font-size:11px; border-width:3px;}
+    .jojo-stamp{top:78px; right:10px; width:48px; height:48px; font-size:10px; border-width:3px;}
     .gogogo-top{font-size:10px; letter-spacing:5px;}
     section{padding:16px}
-    h2{font-size:16px}
-    h2::before{font-size:14px}
-    thead th{padding:10px 10px; font-size:11px}
+    h2{font-size:17px}
+    h2::before{font-size:15px}
+    thead th{padding:10px 10px; font-size:12px}
     tbody td{padding:10px}
-    table{font-size:13.5px; min-width:1100px;}
-    td.num,th.num{font-size:13.5px}
-    td.name, th:first-child, td.name a{font-size:14px}
-    .badge{font-size:10px}
-    .nav a{padding:11px 20px; font-size:12px}
+    table{font-size:13px; min-width:1100px;}
+    td.num,th.num{font-size:13px}
+    td.name, th:first-child, td.name a{font-size:16px}
+    .badge{font-size:10.5px}
+    .nav a{padding:11px 20px; font-size:13px}
     .sub{font-size:12.5px; padding:14px 16px; transform:none;}
   }
 </style>
@@ -626,11 +624,10 @@
   <header>
     <div class="gogogo-top">ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ</div>
 
-    <!-- 右上角 Q版布加拉提 -->
     <div class="chibi-giorno" title="Bucciarati · Arrivederci">
       <img src="bucciarati.png" alt="Bucciarati">
     </div>
-    <div class="jojo-stamp">JO<br>JO</div>
+    <div class="jojo-stamp">JOJO</div>
 
     <h1>OPUS 4.6 中转站汇总</h1>
     <div class="sub">
@@ -827,9 +824,9 @@
   <div class="foot">
     拼写：Ksir的小饭锅；Strait；鈉 API | ナトリウム。<br>
     <b>按量颜色标记：</b>
-    <span style="background:#e8fce8;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">绿 = 极便宜（Yxmagent、Aipm、旋转智能api）</span>
-    <span style="background:#e8f4fc;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">蓝 = 便宜（Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没）</span>
-    <span style="background:#fef8e0;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">黄 = 中等偏便宜（Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼）</span>
+    <span style="background:#e8fce8;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:800;border-radius:999px;">绿 = 极便宜（Yxmagent、Aipm、旋转智能api）</span>
+    <span style="background:#e8f4fc;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:800;border-radius:999px;">蓝 = 便宜（Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没）</span>
+    <span style="background:#fef8e0;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:800;border-radius:999px;">黄 = 中等偏便宜（Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼）</span>
   </div>
 </div>
 
