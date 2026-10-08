@@ -92,92 +92,155 @@
   .sub{ position:relative; z-index:2; max-width:920px; margin:30px auto 0; padding:18px 24px; background:#fff; border:4px solid var(--ink); border-radius:12px; color:var(--text); font-size:13.5px; line-height:2; font-family:var(--round); box-shadow:6px 6px 0 var(--purple); transform:rotate(-.4deg); }
   .sub b{color:var(--purple-deep)}
 
-  .legend{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:22px; position:relative; z-index:2; }
-  .legend > span{ display:inline-flex; align-items:center; background:#fff; border:4px solid var(--ink); border-radius:999px; padding:7px 18px 7px 13px; font-size:13px; color:var(--text); font-weight:700; font-family:var(--round); box-shadow:4px 4px 0 var(--gold); transition:.2s; }
-  .legend > span:nth-child(2){box-shadow:4px 4px 0 var(--cyan);}
-  .legend > span:nth-child(3){box-shadow:4px 4px 0 var(--magenta);}
-  .legend > span:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--gold); }
-  .legend .dot{ width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:8px; flex-shrink:0; border:2px solid var(--ink); }
-  .legend .warn-text{ width:100%; background:var(--ink) !important; border:4px solid var(--ink) !important; box-shadow:4px 4px 0 var(--gold) !important; padding:10px 18px !important; font-size:15px; color:var(--gold) !important; text-align:center; justify-content:center; font-family:var(--round); font-weight:800; letter-spacing:2px; transform:rotate(.3deg); border-radius:999px !important; }
-  .legend .warn-text:hover{transform:rotate(.3deg) translate(-2px,-2px) !important;}
+  /* ================= 图例：缩小 ================= */
+  .legend{ 
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 10px;
+    position: relative; 
+    z-index: 2; 
+  }
+  .legend > span{ 
+    display: inline-flex; 
+    align-items: center; 
+    background:#fff; 
+    border:3px solid var(--ink);
+    border-radius:999px; 
+    padding:3px 10px;
+    font-size:12px;
+    color:var(--text); 
+    font-weight:700; 
+    font-family:var(--round); 
+    box-shadow:3px 3px 0 var(--gold);
+    transition:.2s; 
+    white-space: nowrap; 
+  }
+  .legend > span:nth-child(2){box-shadow:3px 3px 0 var(--cyan);}
+  .legend > span:nth-child(3){box-shadow:3px 3px 0 var(--magenta);}
+  .legend > span:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--gold); }
+  .legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; flex-shrink:0; border:2px solid var(--ink); }
 
-  /* ================= 修复：一长两短，全部在同一行 ================= */
-  .toolbar{
+  /* ================= 过滤器工具栏 ================= */
+  .filter-bar {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
     gap: 12px;
-    margin: 24px auto 0;
+    background: #f3f0fa;
+    padding: 12px 16px;
+    border-radius: 999px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0,0,0,0.03);
+    margin: 12px auto 0; 
     width: 100%;
-    max-width: 100%;
-    position: relative;
-    z-index: 2;
-    overflow-x: auto;
+    max-width: 1100px; 
+    border: 2px solid #e0d8f0;
+    overflow-x: auto; 
   }
+  .filter-bar::-webkit-scrollbar { display: none; }
 
-  .toolbar input{
+  .filter-bar input {
     flex: 1 1 auto;
-    min-width: 220px;
-    padding: 14px 20px;
-    border: 4px solid var(--ink);
-    border-radius: 12px;
+    min-width: 200px;
+    border: 3px solid #a3c4ff;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 14px;
     outline: none;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(163, 196, 255, 0.25), inset 0 2px 4px rgba(0,0,0,0.05);
+    font-family: var(--round);
+    font-weight: 600;
+    color: var(--text);
+    transition: .2s;
+  }
+  .filter-bar input::placeholder { color: #a0a0a0; font-weight: 500; }
+  .filter-bar input:focus { border-color: #7ba6f7; box-shadow: 0 0 0 5px rgba(163, 196, 255, 0.4), inset 0 2px 4px rgba(0,0,0,0.05); }
+
+  .filter-bar select {
+    flex: 0 0 auto;
+    width: auto;
+    border: 2px solid #e0d8f0;
+    border-radius: 999px;
+    padding: 10px 36px 10px 16px;
     font-size: 14px;
     background: #fff;
-    color: var(--text);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b5a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
     font-family: var(--round);
     font-weight: 600;
-    box-shadow: 5px 5px 0 var(--purple);
-    transition: .2s;
-  }
-  .toolbar input::placeholder{color:#9a8aaa; font-weight:500;}
-  .toolbar input:focus{ box-shadow:5px 5px 0 var(--gold); transform:translate(-1px,-1px); }
-
-  .chk{
-    display: inline-flex;
-    flex: 0 0 auto;
-    width: fit-content;
-    white-space: nowrap;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
     color: var(--text);
-    font-weight: 700;
-    background: #fff;
-    border: 4px solid var(--ink);
-    border-radius: 12px;
-    padding: 13px 18px;
     cursor: pointer;
-    user-select: none;
-    font-family: var(--round);
-    box-shadow: 5px 5px 0 var(--cyan);
+    outline: none;
     transition: .2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
   }
-  .chk:hover{ transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--gold); }
-  .chk input{ accent-color: var(--magenta); cursor: pointer; width: auto; margin: 0; }
+  .filter-bar select:hover { background-color: #fcfaff; border-color: #c4b5fd; }
+  .filter-bar select:focus { border-color: #a3c4ff; box-shadow: 0 0 0 4px rgba(163, 196, 255, 0.25); }
 
-  #cnt {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 600;
-    margin-left: 4px;
+  /* ================= 导航栏：统一四个框的高度 ================= */
+  .nav{ 
+    display:flex; 
+    gap:16px; 
+    flex-wrap:wrap; 
+    margin-top:20px;
+    position:relative; 
+    z-index:2; 
+    justify-content:center; 
+    align-items: center; 
   }
-  /* =============================================================== */
-
-  .nav{ display:flex; gap:16px; flex-wrap:wrap; margin-top:28px; position:relative; z-index:2; justify-content:center; }
-  .nav a{ text-decoration:none; padding:14px 32px; font-size:16px; font-weight:800; letter-spacing:1px; color:var(--ink); background:var(--gold); border:4px solid var(--ink); border-radius:999px; font-family:var(--round); transition:.2s; box-shadow:6px 6px 0 var(--ink); position:relative; overflow:hidden; }
+  .nav a{ 
+    text-decoration:none; 
+    padding:9px 26px;       /* 12px -> 9px，降低高度 */
+    font-size:14px;        /* 15px -> 14px，和第四个框的字体一致 */
+    font-weight:800; 
+    letter-spacing:1px; 
+    color:var(--ink); 
+    background:var(--gold); 
+    border:4px solid var(--ink); 
+    border-radius:999px; 
+    font-family:var(--round); 
+    transition:.2s; 
+    box-shadow:6px 6px 0 var(--ink); 
+    position:relative; 
+    overflow:hidden; 
+  }
   .nav a:nth-child(1){background:var(--gold);}
   .nav a:nth-child(2){background:var(--magenta); color:#fff;}
   .nav a:nth-child(3){background:var(--cyan);}
-  .nav a::before{ content:"ゴ"; margin-right:8px; font-size:14px; color:var(--ink); transition:.3s; display:inline-block; font-weight:800; }
+  .nav a::before{ content:"ゴ"; margin-right:6px; font-size:13px; color:var(--ink); transition:.3s; display:inline-block; font-weight:800; }
   .nav a:nth-child(2)::before{color:#fff;}
   .nav a:hover::before{ content:"無駄"; transform:rotate(-8deg); color:var(--red); }
   .nav a:hover{ transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--purple); animation:shake .3s ease-in-out; }
   @keyframes shake{ 0%,100%{transform:translate(-3px,-3px) rotate(0);} 25%{transform:translate(-4px,-4px) rotate(-1.5deg);} 75%{transform:translate(-2px,-2px) rotate(1.5deg);} }
+
+  /* 死了警告的样式，保持 padding: 9px 20px; font-size: 14px */
+  .nav .warn-tag {
+    display: inline-flex;
+    align-items: center;
+    background: var(--ink);
+    border: 4px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--gold);
+    padding: 9px 20px;
+    font-size: 14px;
+    color: var(--gold);
+    font-family: var(--round);
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(.3deg);
+    border-radius: 999px;
+    white-space: nowrap;
+    cursor: default;
+    transition: .2s;
+  }
+  .nav .warn-tag:hover { transform: rotate(.3deg) translate(-2px,-2px); box-shadow: 6px 6px 0 var(--gold); }
 
   section{ position:relative; background:#fff; border:5px solid var(--ink); border-radius:12px; padding:24px; margin:30px 0; box-shadow: 8px 8px 0 var(--gold), 8px 8px 0 5px var(--ink); overflow:hidden; }
   section:nth-child(3){box-shadow:8px 8px 0 var(--cyan), 8px 8px 0 5px var(--ink);}
@@ -255,7 +318,7 @@
     table{font-size:13px; min-width:1100px;}
     td.name, th:first-child, td.name a{font-size:16px}
     .badge{font-size:10.5px}
-    .nav a{padding:11px 20px; font-size:13px}
+    .nav a{padding:9px 20px; font-size:13px}
     .sub{font-size:12.5px; padding:14px 16px; transform:none;}
   }
 </style>
@@ -293,25 +356,41 @@
       注意 k 克价格波动大，用之前记得看价格对不对。<br>
       已按按次价格从低到高排序；按量站无按次价，按按量输入从低到高排序。
     </div>
-    <div class="legend">
-      <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜：Yxmagent、Aipm、旋转智能api</span>
-      <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜：Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没</span>
-      <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜：Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼</span>
-      <span class="warn-text"><b>死了 → 可能复活 / 可能不会</b></span>
-    </div>
     
-    <!-- 工具栏：一长两短 -->
-    <div class="toolbar">
-      <input id="search" type="search" placeholder="搜索站名 / 价格 / 状态，例如：无签到、Bearlab、10r起充、死了">
-      <label class="chk"><input type="checkbox" id="hideDead"> 隐藏已死 / 没了</label>
-      <label class="chk"><input type="checkbox" id="onlySign"> 只看有签到</label>
-      <span class="muted" id="cnt"></span>
+    <!-- 缩小后的图例 -->
+    <div class="legend">
+      <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜</span>
+      <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜</span>
+      <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜</span>
     </div>
 
+    <!-- 过滤器工具栏 -->
+    <div class="filter-bar">
+      <input id="search" type="search" placeholder="搜索站点名称...">
+      <select id="filterStatus">
+        <option value="all">全部状态</option>
+        <option value="alive">隐藏已死</option>
+      </select>
+      <select id="filterSign">
+        <option value="all">全部签到</option>
+        <option value="yes">有签到</option>
+        <option value="no">无签到</option>
+      </select>
+      <select id="filterRecharge">
+        <option value="all">全部起充</option>
+        <option value="1r">1r起充</option>
+        <option value="5r">5r起充</option>
+        <option value="10r">10r起充</option>
+      </select>
+    </div>
+
+    <!-- 导航栏 + “死了”警告合并到一行，且高度一致 -->
     <div class="nav">
       <a href="#dual">一、按次 &amp; 按量</a>
       <a href="#percall">二、按次</a>
       <a href="#usage">三、按量</a>
+      <!-- 死了警告移到这里，放在最后 -->
+      <span class="warn-tag">死了 → 可能复活 / 可能不会</span>
     </div>
   </header>
 
@@ -461,27 +540,38 @@
 
 <script>
   const search = document.getElementById('search');
-  const hideDead = document.getElementById('hideDead');
-  const onlySign = document.getElementById('onlySign');
-  const cnt = document.getElementById('cnt');
+  const filterStatus = document.getElementById('filterStatus');
+  const filterSign = document.getElementById('filterSign');
+  const filterRecharge = document.getElementById('filterRecharge');
   const empty = document.getElementById('empty');
 
   function apply() {
     const q = search.value.trim().toLowerCase();
+    const statusVal = filterStatus.value;
+    const signVal = filterSign.value;
+    const rechargeVal = filterRecharge.value;
+    
     let total = 0;
 
     document.querySelectorAll('section').forEach(function (section) {
       let visible = 0;
       section.querySelectorAll('tbody tr').forEach(function (tr) {
         let ok = true;
-        if (q && !tr.textContent.toLowerCase().includes(q)) ok = false;
-        if (ok && hideDead.checked) {
-          const t = tr.textContent;
+        const t = tr.textContent;
+
+        if (q && !t.toLowerCase().includes(q)) ok = false;
+        if (ok && statusVal === 'alive') {
           if (t.includes('死了') || t.includes('已死') || t.includes('没了')) ok = false;
         }
-        if (ok && onlySign.checked) {
-          if (!tr.textContent.includes('有签到')) ok = false;
+        if (ok && signVal !== 'all') {
+          const hasSign = t.includes('有签到');
+          if (signVal === 'yes' && !hasSign) ok = false;
+          if (signVal === 'no' && hasSign) ok = false;
         }
+        if (ok && rechargeVal !== 'all') {
+          if (!t.includes(rechargeVal + '起充')) ok = false;
+        }
+
         tr.style.display = ok ? '' : 'none';
         if (ok) visible++;
       });
@@ -489,13 +579,17 @@
       total += visible;
     });
 
-    cnt.textContent = '当前显示 ' + total + ' 个站';
+    const cntEl = document.getElementById('cnt');
+    if(cntEl) cntEl.textContent = '当前显示 ' + total + ' 个站';
+    
     empty.classList.toggle('show', total === 0);
   }
 
   search.addEventListener('input', apply);
-  hideDead.addEventListener('change', apply);
-  onlySign.addEventListener('change', apply);
+  filterStatus.addEventListener('change', apply);
+  filterSign.addEventListener('change', apply);
+  filterRecharge.addEventListener('change', apply);
+  
   apply();
 </script>
 </body>
