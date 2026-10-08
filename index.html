@@ -3,129 +3,620 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>opus-4-6中转站汇总</title>
+<title>OPUS 4.6 中转站汇总 · GOLDEN WIND</title>
 <style>
   :root{
-    --bg:#f4f6fb; --card:#fff; --text:#111827; --muted:#6b7280;
-    --border:#e5e7eb; --accent:#4f46e5; --ok:#16a34a;
-    --warn:#d97706; --danger:#dc2626;
-    --round: "Yuanti SC","YouYuan","Hiragino Maru Gothic ProN","Quicksand","Varela Round","PingFang SC","Microsoft YaHei",sans-serif;
+    --bg:#0d0a12;
+    --paper:#fdf6e3;
+    --ink:#1a1420;
+    --gold:#f5c842;
+    --gold-deep:#d4a017;
+    --purple:#7b2d8e;
+    --purple-deep:#4a1a5e;
+    --magenta:#e83a6b;
+    --cyan:#3ac8e8;
+    --red:#d42a2a;
+    --green:#4caf50;
+    --text:#2a1f35;
+    --muted:#6b5a7a;
+    --manga: "Impact", "Arial Black", "Helvetica Neue", sans-serif;
+    --jojo: "Georgia", "Songti SC", "STSong", serif;
+    --round: "Yuanti SC","YouYuan","Hiragino Maru Gothic ProN","Quicksand","PingFang SC","Microsoft YaHei",sans-serif;
   }
   *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
   body{
-    margin:0;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-    background:linear-gradient(135deg,#eef2ff 0%,#f8fafc 40%,#ecfeff 100%);
-    color:var(--text); min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(123,45,142,.35), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(212,160,23,.28), transparent 45%),
+      radial-gradient(circle at 50% 95%, rgba(232,58,107,.20), transparent 50%),
+      linear-gradient(180deg, #0d0a12 0%, #1a1028 50%, #0f0818 100%);
+    background-attachment:fixed;
+    color:#e8e0f0;
+    min-height:100vh;
+    padding-bottom:60px;
+    overflow-x:hidden;
   }
-  .wrap{max-width:1700px;margin:0 auto;padding:20px}
+
+  /* 全屏ゴゴゴゴ拟声层 */
+  body::before{
+    content:"ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ";
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100vh;
+    font-family:var(--manga);
+    font-size:80px;
+    font-weight:900;
+    line-height:1.6;
+    letter-spacing:30px;
+    color:rgba(245,200,66,.045);
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+    word-break:break-all;
+    text-shadow:0 0 30px rgba(245,200,66,.15);
+    transform:rotate(-6deg) scale(1.1);
+  }
+
+  .wrap{max-width:1700px;margin:0 auto;padding:28px 20px;position:relative;z-index:1}
+
+  /* ========== 顶部 ========== */
   header{
-    background:rgba(255,255,255,.88); backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.7); border-radius:20px;
-    padding:22px 24px; box-shadow:0 16px 40px rgba(15,23,42,.08);
-    margin-bottom:18px;
+    position:relative;
+    border-radius:0;
+    padding:50px 40px 40px;
+    margin-bottom:28px;
+    background:var(--paper);
+    border:6px solid var(--ink);
+    box-shadow:
+      10px 10px 0 var(--gold),
+      10px 10px 0 6px var(--ink),
+      20px 20px 0 rgba(123,45,142,.5);
+    overflow:hidden;
   }
-  h1{margin:0 0 8px; font-size:26px; letter-spacing:.5px; font-family:var(--round);}
-  .sub{color:var(--muted); font-size:13.5px; line-height:1.9}
-  .toolbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px}
+  header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 8px, rgba(26,20,32,.06) 8px 9px),
+      repeating-linear-gradient(-45deg, transparent 0 12px, rgba(26,20,32,.04) 12px 13px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* 标题上方ゴゴゴ */
+  .gogogo-top{
+    position:absolute;
+    top:10px; left:50%;
+    transform:translateX(-50%);
+    font-family:var(--manga);
+    font-size:18px;
+    font-weight:900;
+    color:var(--ink);
+    letter-spacing:14px;
+    opacity:.5;
+    z-index:2;
+    white-space:nowrap;
+    pointer-events:none;
+  }
+
+  /* 右上角 Q版布加拉提 */
+  .chibi-giorno{
+    position:absolute;
+    top:12px;
+    right:16px;
+    width:120px;
+    height:120px;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--gold);
+    border:4px solid var(--ink);
+    border-radius:50%;
+    box-shadow:
+      4px 4px 0 var(--ink),
+      4px 4px 0 7px var(--purple);
+    overflow:hidden;
+    transition:.3s;
+    cursor:pointer;
+  }
+  .chibi-giorno:hover{
+    transform:scale(1.08) rotate(-3deg);
+    box-shadow:
+      6px 6px 0 var(--ink),
+      6px 6px 0 10px var(--magenta);
+  }
+  .chibi-giorno img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+    display:block;
+  }
+
+  /* JOJO 印章 */
+  .jojo-stamp{
+    position:absolute;
+    top:142px;
+    right:22px;
+    z-index:5;
+    width:80px;
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--red);
+    color:#fff;
+    border:4px solid var(--ink);
+    border-radius:50%;
+    font-family:var(--manga);
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:0;
+    line-height:1;
+    text-align:center;
+    transform:rotate(-12deg);
+    box-shadow:4px 4px 0 var(--ink);
+    pointer-events:none;
+    text-shadow:2px 2px 0 var(--ink);
+    animation:stampPulse 2s ease-in-out infinite;
+  }
+  @keyframes stampPulse{
+    0%,100%{transform:rotate(-12deg) scale(1);}
+    50%{transform:rotate(-12deg) scale(1.06);}
+  }
+
+  h1{
+    position:relative; z-index:2;
+    margin:0 0 20px;
+    padding-top:14px;
+    font-size:56px;
+    line-height:1.05;
+    letter-spacing:3px;
+    font-family:var(--jojo);
+    font-weight:900;
+    font-style:italic;
+    text-align:center;
+    color:var(--gold);
+    text-transform:uppercase;
+    -webkit-text-stroke:3px var(--ink);
+    paint-order:stroke fill;
+    text-shadow:
+      6px 6px 0 var(--magenta),
+      12px 12px 0 rgba(123,45,142,.5);
+    transform:skew(-6deg);
+  }
+  h1::before{
+    content:"★";
+    font-size:38px;
+    margin-right:18px;
+    color:var(--gold);
+    -webkit-text-stroke:2px var(--ink);
+    vertical-align:middle;
+    font-style:normal;
+    display:inline-block;
+    transform:skew(6deg);
+  }
+  h1::after{
+    content:"★";
+    font-size:38px;
+    margin-left:18px;
+    color:var(--magenta);
+    -webkit-text-stroke:2px var(--ink);
+    vertical-align:middle;
+    font-style:normal;
+    display:inline-block;
+    transform:skew(6deg);
+  }
+
+  .sub{
+    position:relative; z-index:2;
+    max-width:920px;
+    margin:0 auto;
+    padding:18px 24px;
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:0;
+    color:var(--text);
+    font-size:13.5px;
+    line-height:2;
+    font-family:var(--round);
+    box-shadow:6px 6px 0 var(--purple);
+    transform:rotate(-.4deg);
+  }
+  .sub b{color:var(--purple-deep)}
+
+  .legend{
+    display:flex; gap:12px; flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    margin-top:22px;
+    position:relative; z-index:2;
+  }
+  .legend > span{
+    display:inline-flex;
+    align-items:center;
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:0;
+    padding:7px 18px 7px 13px;
+    font-size:12.5px;
+    color:var(--text);
+    font-weight:700;
+    font-family:var(--round);
+    box-shadow:4px 4px 0 var(--gold);
+    transition:.2s;
+  }
+  .legend > span:nth-child(2){box-shadow:4px 4px 0 var(--cyan);}
+  .legend > span:nth-child(3){box-shadow:4px 4px 0 var(--magenta);}
+  .legend > span:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:6px 6px 0 var(--gold);
+  }
+  .legend .dot{
+    width:12px; height:12px;
+    border-radius:0;
+    display:inline-block;
+    margin-right:8px;
+    flex-shrink:0;
+    border:2px solid var(--ink);
+  }
+  .legend .warn-text{
+    width:100%;
+    background:var(--ink) !important;
+    border:4px solid var(--ink) !important;
+    box-shadow:4px 4px 0 var(--gold) !important;
+    padding:8px 18px !important;
+    font-size:14px;
+    color:var(--gold) !important;
+    text-align:center;
+    justify-content:center;
+    font-family:var(--manga);
+    letter-spacing:1px;
+    transform:rotate(.3deg);
+  }
+  .legend .warn-text:hover{transform:rotate(.3deg) translate(-2px,-2px) !important;}
+
+  .toolbar{
+    display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+    margin-top:24px;
+    position:relative; z-index:2;
+    justify-content:center;
+  }
   .toolbar input{
-    flex:1 1 320px; min-width:220px; padding:10px 14px;
-    border:1px solid var(--border); border-radius:12px; outline:none;
-    font-size:14px; background:#fff;
+    flex:1 1 320px; min-width:220px; max-width:560px;
+    padding:14px 20px;
+    border:4px solid var(--ink);
+    border-radius:0;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+    color:var(--text);
+    font-family:var(--round);
+    box-shadow:5px 5px 0 var(--purple);
+    transition:.2s;
   }
-  .toolbar input:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(79,70,229,.12)}
+  .toolbar input::placeholder{color:#9a8aaa}
+  .toolbar input:focus{
+    box-shadow:5px 5px 0 var(--gold);
+    transform:translate(-1px,-1px);
+  }
   .chk{
-    display:inline-flex; align-items:center; gap:6px; font-size:13px;
-    color:#374151; background:#fff; border:1px solid var(--border);
-    border-radius:12px; padding:9px 12px; cursor:pointer; user-select:none;
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--text); font-weight:700;
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:0;
+    padding:13px 18px;
+    cursor:pointer; user-select:none;
+    font-family:var(--round);
+    box-shadow:5px 5px 0 var(--cyan);
+    transition:.2s;
   }
-  .chk input{accent-color:var(--accent); cursor:pointer}
-  .nav{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+  .chk:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--gold);}
+  .chk input{accent-color:var(--magenta); cursor:pointer}
+  .muted{color:var(--muted); font-size:13px}
+
+  .nav{
+    display:flex; gap:16px; flex-wrap:wrap;
+    margin-top:28px;
+    position:relative; z-index:2;
+    justify-content:center;
+  }
   .nav a{
-    text-decoration:none; color:var(--accent); background:#eef2ff;
-    border:1px solid #e0e7ff; padding:7px 12px; border-radius:999px;
-    font-size:13px; font-weight:600;
+    text-decoration:none;
+    padding:14px 32px;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:1px;
+    color:var(--ink);
+    background:var(--gold);
+    border:4px solid var(--ink);
+    border-radius:0;
+    font-family:var(--manga);
+    text-transform:uppercase;
+    transition:.2s;
+    box-shadow:6px 6px 0 var(--ink);
+    position:relative;
+    overflow:hidden;
   }
-  .nav a:hover{background:#e0e7ff}
+  .nav a:nth-child(1){background:var(--gold);}
+  .nav a:nth-child(2){background:var(--magenta); color:#fff;}
+  .nav a:nth-child(3){background:var(--cyan);}
+  .nav a::before{
+    content:"ゴ";
+    margin-right:8px;
+    font-size:14px;
+    color:var(--ink);
+    transition:.3s;
+    display:inline-block;
+  }
+  .nav a:hover::before{
+    content:"無駄";
+    transform:rotate(-8deg);
+    color:var(--red);
+  }
+  .nav a:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:9px 9px 0 var(--purple);
+    animation:shake .3s ease-in-out;
+  }
+  @keyframes shake{
+    0%,100%{transform:translate(-3px,-3px) rotate(0);}
+    25%{transform:translate(-4px,-4px) rotate(-1.5deg);}
+    75%{transform:translate(-2px,-2px) rotate(1.5deg);}
+  }
+
+  /* ========== 表格卡片 ========== */
   section{
-    background:var(--card); border:1px solid var(--border);
-    border-radius:18px; padding:16px; margin:20px 0;
-    box-shadow:0 12px 34px rgba(15,23,42,.05);
+    position:relative;
+    background:var(--paper);
+    border:5px solid var(--ink);
+    border-radius:0;
+    padding:24px;
+    margin:30px 0;
+    box-shadow:
+      8px 8px 0 var(--gold),
+      8px 8px 0 5px var(--ink);
+    overflow:hidden;
   }
-  h2{margin:4px 0 12px; font-size:19px; display:flex; align-items:center; gap:8px; font-family:var(--round);}
+  section:nth-child(3){box-shadow:8px 8px 0 var(--cyan), 8px 8px 0 5px var(--ink);}
+  section:nth-child(4){box-shadow:8px 8px 0 var(--magenta), 8px 8px 0 5px var(--ink);}
+  section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(45deg, transparent 0 10px, rgba(26,20,32,.03) 10px 11px);
+    pointer-events:none;
+    z-index:0;
+  }
+  section::after{
+    content:"ドドド";
+    position:absolute;
+    top:8px; right:20px;
+    font-family:var(--manga);
+    font-size:22px;
+    font-weight:900;
+    color:rgba(232,58,107,.25);
+    letter-spacing:6px;
+    pointer-events:none;
+    z-index:0;
+    transform:rotate(-3deg);
+  }
+
+  h2{
+    position:relative; z-index:1;
+    margin:0 0 18px;
+    font-size:24px;
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--manga);
+    color:var(--ink);
+    font-weight:900;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    -webkit-text-stroke:1.5px var(--ink);
+    paint-order:stroke fill;
+    text-shadow:3px 3px 0 var(--gold);
+  }
+  h2::before{
+    content:"ゴ";
+    color:var(--magenta);
+    font-size:22px;
+    -webkit-text-stroke:1px var(--ink);
+    font-style:normal;
+    animation:gogoFlash 1.6s ease-in-out infinite;
+  }
+  @keyframes gogoFlash{
+    0%,100%{opacity:1; transform:translateY(0);}
+    50%{opacity:.5; transform:translateY(-2px);}
+  }
   h2 .count{
-    font-size:12px; color:var(--muted); font-weight:500;
-    background:#f3f4f6; border-radius:999px; padding:2px 8px;
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:11.5px;
+    color:var(--ink);
+    font-weight:900;
+    background:var(--gold);
+    border:3px solid var(--ink);
+    border-radius:0;
+    padding:3px 12px;
+    font-family:var(--manga);
+    box-shadow:3px 3px 0 var(--ink);
+    -webkit-text-stroke:0;
   }
-  .table-wrap{overflow:auto; border:1px solid var(--border); border-radius:14px; -webkit-overflow-scrolling:touch}
+  .table-wrap{
+    position:relative; z-index:1;
+    overflow:auto;
+    border:4px solid var(--ink);
+    border-radius:0;
+    -webkit-overflow-scrolling:touch;
+    background:#fff;
+    box-shadow:5px 5px 0 var(--purple);
+  }
   table{
-    width:100%; border-collapse:collapse;
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
     font-size:15px;
-    min-width:1280px; background:#fff;
+    min-width:1280px;
+    background:#fff;
   }
-  th,td{padding:11px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; white-space:nowrap}
-  th{
-    background:#eef2ff; color:#312e81; font-weight:700;
-    position:sticky; top:0; z-index:1;
-    font-size:15px;
+  thead th{
+    background:var(--ink);
+    color:var(--gold);
+    font-weight:900;
+    text-align:left;
+    padding:14px 16px;
+    border-bottom:4px solid var(--gold);
+    font-size:12.5px;
+    letter-spacing:1px;
+    white-space:nowrap;
+    position:sticky;
+    top:0;
+    z-index:1;
+    font-family:var(--manga);
+    text-transform:uppercase;
   }
-  tbody tr:nth-child(even){background:#fafafa}
-  tbody tr:hover{background:#f0f9ff}
+  tbody td{
+    padding:13px 16px;
+    border-bottom:2px solid #e8e0f0;
+    vertical-align:middle;
+    white-space:nowrap;
+    color:var(--text);
+    transition:background .15s;
+  }
+  tbody tr:hover td{background:#fef9e8}
+  tbody tr:last-child td{border-bottom:none}
   td.num,th.num{font-variant-numeric:tabular-nums; font-size:15px}
 
   td.name, th:first-child{
-    font-family:var(--round);
-    font-size:17px;
-    font-weight:700;
-    letter-spacing:.3px;
+    font-family:var(--manga);
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    position:relative;
   }
   td.name a{
-    font-family:var(--round);
-    font-size:17px;
-    font-weight:700;
+    font-family:var(--manga);
+    font-size:16px;
+    font-weight:900;
+    color:var(--purple-deep);
+    text-decoration:none;
+    transition:.15s;
+    text-transform:uppercase;
+    position:relative;
+    display:inline-block;
+  }
+  td.name a::after{
+    content:"ゴゴゴ";
+    position:absolute;
+    top:-14px; left:100%;
+    margin-left:6px;
+    font-size:9px;
+    font-family:var(--manga);
+    color:var(--red);
+    letter-spacing:-2px;
+    opacity:0;
+    transition:.25s;
+    pointer-events:none;
+    -webkit-text-stroke:0;
+  }
+  td.name a:hover::after{opacity:1; top:-16px;}
+  td.name a:hover{
+    color:var(--magenta);
+    text-decoration:underline;
+    text-decoration-thickness:3px;
+    text-underline-offset:3px;
   }
 
-  .muted{color:var(--muted); font-size:13px}
   .badge{
-    display:inline-block; padding:2px 8px; border-radius:999px;
-    font-size:12.5px; font-weight:700; line-height:1.7; margin-right:4px;
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:0;
+    font-size:11px;
+    font-weight:900;
+    line-height:1.7;
+    margin-right:5px;
+    border:3px solid var(--ink);
+    white-space:nowrap;
+    font-family:var(--manga);
+    text-transform:uppercase;
+    letter-spacing:.5px;
   }
-  .badge.danger{background:#fee2e2; color:#b91c1c}
-  .badge.warn{background:#fef3c7; color:#92400e}
-  .badge.ok{background:#dcfce7; color:#166534}
-  .badge.info{background:#dbeafe; color:#1d4ed8}
-  .badge.muted{background:#f3f4f6; color:#4b5563}
-  tr.is-dead td{opacity:.72}
-  tr.is-dead .name{color:#9ca3af; text-decoration:line-through}
-  tr.is-dead:hover td{opacity:1}
-  tr.very-cheap td{background-color:#86efac !important;}
-  tr.cheap td{background-color:#bfdbfe !important;}
-  tr.mid-cheap td{background-color:#fde68a !important;}
-  tr.very-cheap:hover td{background-color:#4ade80 !important;}
-  tr.cheap:hover td{background-color:#93c5fd !important;}
-  tr.mid-cheap:hover td{background-color:#fcd34d !important;}
-  .foot{color:var(--muted); font-size:12.5px; line-height:1.9; padding:12px 4px 30px}
-  .empty{display:none; text-align:center; color:var(--muted); padding:24px; font-size:14px}
+  .badge.danger{background:var(--red); color:#fff;}
+  .badge.warn{background:var(--gold); color:var(--ink);}
+  .badge.ok{background:var(--green); color:#fff;}
+  .badge.info{background:var(--cyan); color:var(--ink);}
+  .badge.muted{background:#e0d8e8; color:var(--muted);}
+
+  tr.is-dead td{opacity:.5}
+  tr.is-dead .name{text-decoration:line-through}
+  tr.is-dead .name a{color:#a89bb8; text-decoration:line-through;}
+  tr.is-dead .name a::after{content:"";}
+  tr.is-dead:hover td{opacity:.85}
+
+  tr.very-cheap td{background:#e8fce8 !important;}
+  tr.cheap td{background:#e8f4fc !important;}
+  tr.mid-cheap td{background:#fef8e0 !important;}
+  tr.very-cheap:hover td{background:#d0f5d0 !important;}
+  tr.cheap:hover td{background:#d0e8f8 !important;}
+  tr.mid-cheap:hover td{background:#fcefc0 !important;}
+
+  .foot{
+    color:var(--muted);
+    font-size:12.5px;
+    line-height:2.1;
+    padding:20px 6px 30px;
+    font-family:var(--round);
+  }
+  .foot b{color:var(--purple-deep); font-family:var(--manga); font-style:normal;}
+  .empty{
+    display:none;
+    text-align:center;
+    color:var(--muted);
+    padding:36px;
+    font-size:14px;
+    background:#fff;
+    border-radius:0;
+    border:4px dashed var(--ink);
+    font-family:var(--manga);
+    text-transform:uppercase;
+  }
   .empty.show{display:block}
-  a{color:var(--accent); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .legend{
-    display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:13px;
-    align-items:center;
-  }
-  .legend .dot{
-    display:inline-block; width:14px; height:14px; border-radius:4px;
-    border:1px solid #cbd5e1; vertical-align:-2px; margin-right:6px;
+
+  ::-webkit-scrollbar{width:12px;height:12px;}
+  ::-webkit-scrollbar-track{background:var(--ink);}
+  ::-webkit-scrollbar-thumb{background:var(--gold);border:2px solid var(--ink);}
+  ::-webkit-scrollbar-thumb:hover{background:var(--magenta);}
+
+  @media (max-width:900px){
+    h1{font-size:34px; transform:skew(-4deg);}
+    h1::before,h1::after{font-size:22px; margin:0 8px;}
+    .chibi-giorno{width:90px;height:90px;top:8px;right:10px;}
+    .jojo-stamp{top:108px; right:14px; width:64px; height:64px; font-size:13px;}
+    .gogogo-top{font-size:12px; letter-spacing:8px;}
   }
   @media (max-width:640px){
-    .wrap{padding:12px} header{padding:16px} h1{font-size:21px}
-    section{padding:12px} th,td{padding:8px}
-    table{font-size:14px; min-width:1100px;}
-    th{font-size:14px;}
-    td.num,th.num{font-size:14px;}
-    td.name, th:first-child, td.name a{font-size:16px;}
-    .badge{font-size:11.5px;}
+    .wrap{padding:14px 12px}
+    header{padding:38px 18px 26px}
+    h1{font-size:22px; -webkit-text-stroke:2px var(--ink); transform:skew(-3deg); letter-spacing:1px;}
+    h1::before,h1::after{font-size:14px; margin:0 4px;}
+    .chibi-giorno{width:66px;height:66px;top:6px;right:8px;border-width:3px;box-shadow:3px 3px 0 var(--ink),3px 3px 0 5px var(--purple);}
+    .jojo-stamp{top:78px; right:10px; width:48px; height:48px; font-size:11px; border-width:3px;}
+    .gogogo-top{font-size:10px; letter-spacing:5px;}
+    section{padding:16px}
+    h2{font-size:16px}
+    h2::before{font-size:14px}
+    thead th{padding:10px 10px; font-size:11px}
+    tbody td{padding:10px}
+    table{font-size:13.5px; min-width:1100px;}
+    td.num,th.num{font-size:13.5px}
+    td.name, th:first-child, td.name a{font-size:14px}
+    .badge{font-size:10px}
+    .nav a{padding:11px 20px; font-size:12px}
+    .sub{font-size:12.5px; padding:14px 16px; transform:none;}
   }
 </style>
 </head>
@@ -133,7 +624,15 @@
 <div class="wrap">
 
   <header>
-    <h1>opus-4-6中转站汇总</h1>
+    <div class="gogogo-top">ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ</div>
+
+    <!-- 右上角 Q版布加拉提 -->
+    <div class="chibi-giorno" title="Bucciarati · Arrivederci">
+      <img src="bucciarati.png" alt="Bucciarati">
+    </div>
+    <div class="jojo-stamp">JO<br>JO</div>
+
+    <h1>OPUS 4.6 中转站汇总</h1>
     <div class="sub">
       表格收录了大部分站子按次和按量 46o 克最便宜的价格，好不好吃不知道，只看便不便宜。<br>
       一些站子只有按次，是因为按量的贵不记入。一些价格按次按量都贵所以不收录。<br>
@@ -141,10 +640,10 @@
       已按按次价格从低到高排序；按量站无按次价，按按量输入从低到高排序。
     </div>
     <div class="legend">
-      <span><span class="dot" style="background:#86efac"></span>绿 = 极便宜：Yxmagent、Aipm、旋转智能api</span>
-      <span><span class="dot" style="background:#bfdbfe"></span>蓝 = 便宜：Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没</span>
-      <span><span class="dot" style="background:#fde68a"></span>黄 = 中等偏便宜：Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼</span>
-      <span style="width:100%; margin-top:4px;"><b><u>死了→可能复活/可能不会</u></b></span>
+      <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜：Yxmagent、Aipm、旋转智能api</span>
+      <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜：Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没</span>
+      <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜：Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼</span>
+      <span class="warn-text"><b>死了 → 可能复活 / 可能不会</b></span>
     </div>
     <div class="toolbar">
       <input id="search" type="search" placeholder="搜索站名 / 价格 / 状态，例如：无签到、Bearlab、10r起充、死了">
@@ -289,23 +788,16 @@
           <tr class="cheap"><td class="name"><a href="https://mhapi.net/register?aff=QSTCXKYXLPEQ" target="_blank" rel="noopener">梦幻</a></td><td class="num">—</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.03</td><td class="num">0.375<br><span class="muted">1h 0.6</span></td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="is-dead"><td class="name"><a href="https://server.1432151545.xyz/sign-up?aff=Fbng" target="_blank" rel="noopener">神秘中转站</a></td><td class="num">—</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.04</td><td class="num">0.3</td><td>10r起充</td><td><span class="badge ok">有签到</span></td><td><span class="badge danger">没了</span></td></tr>
           <tr class="cheap is-dead"><td class="name"><a href="https://api.yjs.im/sign-up?aff=M0wv" target="_blank" rel="noopener">Jasper</a></td><td class="num">—</td><td class="num">0.3</td><td class="num">1.5</td><td class="num">0.03</td><td class="num">5m：0.375<br>1h：0.6</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge danger">死了</span></td></tr>
-          
           <tr class="cheap"><td class="name"><a href="https://www.xcmapi.org/register?aff=S69N6EW7ZGLY" target="_blank" rel="noopener">鸡出没</a></td><td class="num">—</td><td class="num">0.4</td><td class="num">2.0</td><td class="num">0.05</td><td class="num">0.04</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
-
           <tr class="cheap"><td class="name"><a href="https://new.tianluo.ccwu.cc/sign-up?aff=IyVw" target="_blank" rel="noopener">全村的api</a></td><td class="num">—</td><td class="num">0.425</td><td class="num">2.125</td><td class="num">0.0425</td><td class="num">0.53125</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="cheap"><td class="name"><a href="https://paidapi.leyanshi.me/sign-up?aff=qLb5" target="_blank" rel="noopener">Zynk（付费）</a></td><td class="num">—</td><td class="num">0.44</td><td class="num">2.2</td><td class="num">0.044</td><td class="num">0.55</td><td>5r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="cheap"><td class="name"><a href="https://zzwsapi.top/sign-up?aff=KUld" target="_blank" rel="noopener">折枝雾逝</a></td><td class="num">—</td><td class="num">0-200k：0.45<br>200k+：0.9</td><td class="num">0-200k：2.25<br>200k+：4.5</td><td class="num">0-200k：0.045<br>200k+：0.09</td><td class="num">0-200k：5M 0.5625 / 1H 0.9<br>200k+：5M 1.125 / 1H 1.8</td><td>10r起充</td><td><span class="badge muted">无签到</span></td><td><span class="badge info">阶梯</span></td></tr>
-          
           <tr class="mid-cheap"><td class="name"><a href="https://857728.com/register?aff=F3SHHBEG5XKL" target="_blank" rel="noopener">gti超人</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.625<br><span class="muted">1h 1</span></td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
-
           <tr class="mid-cheap"><td class="name"><a href="https://api.yocat.top/sign-up?aff=Mkk7" target="_blank" rel="noopener">柚茶</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.625<br><span class="muted">1h 1</span></td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="mid-cheap"><td class="name"><a href="https://api.hyaccom.com/register?aff=4DCLTPUTTDB2" target="_blank" rel="noopener">Hyacapi</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.625</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="mid-cheap"><td class="name"><a href="https://api.leostudio.cc/sign-up?aff=KRUA" target="_blank" rel="noopener">Leostudio</a></td><td class="num">—</td><td class="num">0.5</td><td class="num">2.5</td><td class="num">0.05</td><td class="num">0.125</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
-          
-          <!-- 插入 RelayLink 灵链 和 鱼鱼 -->
           <tr class="mid-cheap"><td class="name"><a href="https://api.relaylink.cloud/register?aff=YWGMLL5DBA4M" target="_blank" rel="noopener">RelayLink 灵链</a></td><td class="num">—</td><td class="num">0.6</td><td class="num">3.0</td><td class="num">0.06</td><td class="num">0.75<br><span class="muted">1h 0.75</span></td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
           <tr class="mid-cheap"><td class="name"><a href="https://sub.anzhiyu.com/register?aff=GQN6FHZLRS7J" target="_blank" rel="noopener">鱼鱼</a></td><td class="num">—</td><td class="num">0.6</td><td class="num">3.0</td><td class="num">0.06</td><td class="num">0.75</td><td>1r起充</td><td><span class="badge muted">无签到</span></td><td></td></tr>
-
           <tr class="mid-cheap"><td class="name"><a href="https://cli.999554.xyz/register?aff=tBrn" target="_blank" rel="noopener">云舟</a></td><td class="num">—</td><td class="num">0.75</td><td class="num">3.75</td><td class="num">0.075</td><td class="num">缓存创建 0.9375<br>1h缓存创建 1.5</td><td>1r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
           <tr class="mid-cheap"><td class="name"><a href="https://api.leostudio.cc/sign-up?aff=KRUA" target="_blank" rel="noopener">沉默</a></td><td class="num">—</td><td class="num">0.75</td><td class="num">3.75</td><td class="num">0.075</td><td class="num">0.9375</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
           <tr class="mid-cheap"><td class="name"><a href="https://straitapi.com/sign-up?aff=CJYQ" target="_blank" rel="noopener">Strait</a></td><td class="num">—</td><td class="num">0.8</td><td class="num">4</td><td class="num">0.08</td><td class="num">1</td><td>5r起充</td><td><span class="badge ok">有签到</span></td><td></td></tr>
@@ -335,9 +827,9 @@
   <div class="foot">
     拼写：Ksir的小饭锅；Strait；鈉 API | ナトリウム。<br>
     <b>按量颜色标记：</b>
-    <span style="background:#86efac;padding:1px 6px;border-radius:4px;">绿 = 极便宜（Yxmagent、Aipm、旋转智能api）</span>
-    <span style="background:#bfdbfe;padding:1px 6px;border-radius:4px;">蓝 = 便宜（Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没）</span>
-    <span style="background:#fde68a;padding:1px 6px;border-radius:4px;">黄 = 中等偏便宜（Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼）</span>
+    <span style="background:#e8fce8;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">绿 = 极便宜（Yxmagent、Aipm、旋转智能api）</span>
+    <span style="background:#e8f4fc;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">蓝 = 便宜（Bearlab、Cccccc、Vc、Zerocat、Jasper、良心、Zynk、Ksir的小饭锅、折枝雾逝、梦幻、全村的api、鸡出没）</span>
+    <span style="background:#fef8e0;padding:3px 12px;border:3px solid #1a1420;color:#2a1f35;font-weight:900;">黄 = 中等偏便宜（Leostudio、Hyacapi、云舟、沉默、Strait、柚茶、gti超人、RelayLink灵链、鱼鱼）</span>
   </div>
 </div>
 
