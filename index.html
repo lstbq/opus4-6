@@ -185,7 +185,7 @@
   .filter-bar select:hover { background-color: #fcfaff; border-color: #c4b5fd; }
   .filter-bar select:focus { border-color: #a3c4ff; box-shadow: 0 0 0 4px rgba(163, 196, 255, 0.25); }
 
-  /* ================= 导航栏：统一四个框的高度 ================= */
+  /* ================= 导航栏：统一高度 ================= */
   .nav{ 
     display:flex; 
     gap:16px; 
@@ -198,8 +198,8 @@
   }
   .nav a{ 
     text-decoration:none; 
-    padding:9px 26px;       /* 12px -> 9px，降低高度 */
-    font-size:14px;        /* 15px -> 14px，和第四个框的字体一致 */
+    padding:9px 26px;
+    font-size:14px;
     font-weight:800; 
     letter-spacing:1px; 
     color:var(--ink); 
@@ -221,7 +221,7 @@
   .nav a:hover{ transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--purple); animation:shake .3s ease-in-out; }
   @keyframes shake{ 0%,100%{transform:translate(-3px,-3px) rotate(0);} 25%{transform:translate(-4px,-4px) rotate(-1.5deg);} 75%{transform:translate(-2px,-2px) rotate(1.5deg);} }
 
-  /* 死了警告的样式，保持 padding: 9px 20px; font-size: 14px */
+  /* 死了警告 */
   .nav .warn-tag {
     display: inline-flex;
     align-items: center;
@@ -261,7 +261,11 @@
   tbody tr:last-child td{border-bottom:none}
   td.num,th.num{font-variant-numeric:tabular-nums; font-size:14.5px; font-weight:700;}
 
-  td.name, th:first-child{ font-family:var(--round); font-size:18px; font-weight:800; letter-spacing:.5px; position:relative; }
+  /* ================== 关键修改：表头字号统一 ================== */
+  td.name { font-family:var(--round); font-size:18px; font-weight:800; letter-spacing:.5px; position:relative; }
+  /* 覆盖表头第一列的字号，强制和其他表头一致 */
+  th:first-child { font-family:var(--round); font-size:13.5px; font-weight:800; letter-spacing:1.5px; position:relative; }
+
   td.name a{ font-family:var(--round); font-size:18px; font-weight:800; color:var(--name-color); text-decoration:none; transition:.15s; position:relative; display:inline-block; letter-spacing:.5px; }
   td.name a::after{ content:"ゴゴゴ"; position:absolute; top:-14px; left:100%; margin-left:6px; font-size:10px; font-family:var(--round); font-weight:800; color:var(--red); letter-spacing:-2px; opacity:0; transition:.25s; pointer-events:none; }
   td.name a:hover::after{opacity:1; top:-16px;}
@@ -389,7 +393,6 @@
       <a href="#dual">一、按次 &amp; 按量</a>
       <a href="#percall">二、按次</a>
       <a href="#usage">三、按量</a>
-      <!-- 死了警告移到这里，放在最后 -->
       <span class="warn-tag">死了 → 可能复活 / 可能不会</span>
     </div>
   </header>
