@@ -6,7 +6,7 @@
 <title>OPUS 4.6 中转站汇总 · GOLDEN WIND</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Yusei+Magic&family=Quicksand:wght@500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=ZCOOL+KuaiLe&family=Quicksand:wght@500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#fdf6e3;
@@ -21,6 +21,7 @@
     --text:#2a1f35;
     --muted:#6b5a7a;
     --round: "Yuanti SC", "YouYuan", "Varela Round", "Quicksand", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --jelly: "ZCOOL KuaiLe", "Mochiy Pop One", "Yuanti SC", "Microsoft YaHei", sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -89,16 +90,79 @@
   .jojo-stamp{ position:absolute; top:142px; right:22px; z-index:5; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:16px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
   @keyframes stampPulse{ 0%,100%{transform:rotate(-12deg) scale(1);} 50%{transform:rotate(-12deg) scale(1.06);} }
 
-  .sub{ position:relative; z-index:2; max-width:920px; margin:30px auto 0; padding:18px 24px; background:#fff; border:4px solid var(--ink); border-radius:12px; color:var(--text); font-size:13.5px; line-height:2; font-family:var(--round); box-shadow:6px 6px 0 var(--purple); transform:rotate(-.4deg); }
+  /* ================= 说明文字 + 图例（缩小版） ================= */
+  .sub{ 
+    position:relative; 
+    z-index:2; 
+    max-width:920px; 
+    margin:30px auto 0; 
+    padding:18px 24px; 
+    background:#fff; 
+    border:4px solid var(--ink); 
+    border-radius:12px; 
+    color:var(--text); 
+    font-size:13.5px; 
+    line-height:2; 
+    font-family:var(--round); 
+    box-shadow:6px 6px 0 var(--purple); 
+    transform:rotate(-.4deg); 
+    text-align: left; 
+  }
   .sub b{color:var(--purple-deep)}
-
-  /* ================= 图例 ================= */
-  .legend{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin-top: 10px; position: relative; z-index: 2; }
-  .legend > span{ display: inline-flex; align-items: center; background:#fff; border:3px solid var(--ink); border-radius:999px; padding:3px 10px; font-size:12px; color:var(--text); font-weight:700; font-family:var(--round); box-shadow:3px 3px 0 var(--gold); transition:.2s; white-space: nowrap; }
-  .legend > span:nth-child(2){box-shadow:3px 3px 0 var(--cyan);}
-  .legend > span:nth-child(3){box-shadow:3px 3px 0 var(--magenta);}
-  .legend > span:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--gold); }
-  .legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; flex-shrink:0; border:2px solid var(--ink); }
+  
+  /* 图例容器靠左 */
+  .legend{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    align-items: center; 
+    justify-content: flex-start; 
+    margin-top: 10px; 
+    position: relative; 
+    z-index: 2; 
+  }
+  
+  /* 圆体 + 缩小一号 */
+  .legend > span{ 
+    display: inline-flex; 
+    align-items: center; 
+    border: 2px solid;          /* 边框变细：3px -> 2px */
+    border-radius: 999px; 
+    padding: 2px 12px;          /* 内边距缩小：3px 16px -> 2px 12px */
+    font-size: 12px;            /* 字体缩小：14px -> 12px */
+    color: #fff;                /* 白色文字 */
+    font-weight: 800; 
+    font-family: var(--round);  /* 圆体 */
+    white-space: nowrap; 
+    letter-spacing: 1px; 
+    background: var(--ink); 
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  }
+  
+  /* 第一项：绿边，绿色阴影 */
+  .legend > span:nth-child(1) { 
+    border-color: var(--green); 
+    box-shadow: 2px 2px 0 var(--green); /* 阴影缩小：3px 3px -> 2px 2px */
+  }
+  /* 第二项：蓝边，蓝色阴影 */
+  .legend > span:nth-child(2) { 
+    border-color: var(--cyan); 
+    box-shadow: 2px 2px 0 var(--cyan); 
+  }
+  /* 第三项：黄边，黄色阴影 */
+  .legend > span:nth-child(3) { 
+    border-color: var(--gold); 
+    box-shadow: 2px 2px 0 var(--gold); 
+  }
+  
+  /* 悬停上浮 */
+  .legend > span:hover{ transform: translate(-2px, -2px); }
+  .legend > span:nth-child(1):hover { box-shadow: 4px 4px 0 var(--green); }
+  .legend > span:nth-child(2):hover { box-shadow: 4px 4px 0 var(--cyan); }
+  .legend > span:nth-child(3):hover { box-shadow: 4px 4px 0 var(--gold); }
+  
+  /* 小圆点缩小 */
+  .legend .dot{ width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; flex-shrink: 0; border: 1.5px solid #fff; box-shadow: inset 0 0 2px rgba(0,0,0,0.5); }
 
   /* ================= 过滤器工具栏 ================= */
   .filter-bar {
@@ -291,7 +355,7 @@
     top: 0; left: 0;
     width: 26px; height: 26px;
     transform: rotate(-10deg);
-    filter: drop-shadow(2px 2px 0 #e83a6b); /* 洋红阴影 */
+    filter: drop-shadow(2px 2px 0 #e83a6b);
   }
   .cursor-text {
     position: absolute;
@@ -330,10 +394,8 @@
 </head>
 <body>
 
-  <!-- 自定义光标 -->
   <div id="custom-cursor">
     <svg class="cursor-arrow" viewBox="0 0 26 26">
-      <!-- 黑填充 + 金描边 -->
       <path d="M4 2 L22 13 L13 15 L11 24 Z" fill="#1a1420" stroke="#f5c842" stroke-width="2" stroke-linejoin="round"/>
     </svg>
     <div class="cursor-text">
@@ -373,12 +435,12 @@
       一些站子只有按次，是因为按量的贵不记入。一些价格按次按量都贵所以不收录。<br>
       注意 k 克价格波动大，用之前记得看价格对不对。<br>
       已按按次价格从低到高排序；按量站无按次价，按按量输入从低到高排序。
-    </div>
-    
-    <div class="legend">
-      <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜</span>
-      <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜</span>
-      <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜</span>
+      
+      <div class="legend">
+        <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜</span>
+        <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜</span>
+        <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜</span>
+      </div>
     </div>
 
     <div class="filter-bar">
@@ -408,7 +470,6 @@
     </div>
   </header>
 
-  <!-- ================= 一、按次 & 按量 ================= -->
   <section id="dual">
     <h2>一、按次 &amp; 按量 <span class="count">18 条</span></h2>
     <div class="table-wrap">
@@ -440,7 +501,6 @@
     </div>
   </section>
 
-  <!-- ================= 二、按次 ================= -->
   <section id="percall">
     <h2>二、按次 <span class="count">37 条</span></h2>
     <div class="table-wrap">
@@ -491,7 +551,6 @@
     </div>
   </section>
 
-  <!-- ================= 三、按量 ================= -->
   <section id="usage">
     <h2>三、按量 <span class="count">27 条</span> <span class="muted" style="font-size:12px;font-weight:400">（按按量输入从低到高）</span></h2>
     <div class="table-wrap">
@@ -553,7 +612,6 @@
 </div>
 
 <script>
-  // ========== 表格筛选逻辑 ==========
   const search = document.getElementById('search');
   const filterStatus = document.getElementById('filterStatus');
   const filterSign = document.getElementById('filterSign');
@@ -602,12 +660,9 @@
   filterRecharge.addEventListener('change', apply);
   apply();
 
-  // ========== 自定义光标逻辑 ==========
   const cursor = document.getElementById('custom-cursor');
   const starContainer = document.getElementById('star-container');
-
   const starPath = 'M12 0 L13.2 10.8 L22 12 L13.2 13.2 L12 24 L10.8 13.2 L2 12 L10.8 10.8 Z';
-  
   function createStar(x, y, size, delay, duration) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'cursor-star');
@@ -617,28 +672,14 @@
     path.setAttribute('fill', '#f5c842');
     path.setAttribute('stroke', 'none');
     svg.appendChild(path);
-
-    svg.style.left = x + 'px';
-    svg.style.top = y + 'px';
-    svg.style.width = size + 'px';
-    svg.style.height = size + 'px';
-    svg.style.animationDelay = delay + 's';
-    svg.style.animationDuration = duration + 's';
+    svg.style.left = x + 'px'; svg.style.top = y + 'px';
+    svg.style.width = size + 'px'; svg.style.height = size + 'px';
+    svg.style.animationDelay = delay + 's'; svg.style.animationDuration = duration + 's';
     starContainer.appendChild(svg);
   }
-
-  function rand(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  // 全局星星
-  for (let i = 0; i < 12; i++) {
-    createStar(rand(-10, 160), rand(-10, 75), rand(8, 14), rand(0, 1.5), rand(0.6, 1.4));
-  }
-  // 右下角加密
-  for (let i = 0; i < 16; i++) {
-    createStar(rand(100, 175), rand(40, 85), rand(7, 15), rand(0, 1.5), rand(0.6, 1.4));
-  }
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+  for (let i = 0; i < 12; i++) createStar(rand(-10, 160), rand(-10, 75), rand(8, 14), rand(0, 1.5), rand(0.6, 1.4));
+  for (let i = 0; i < 16; i++) createStar(rand(100, 175), rand(40, 85), rand(7, 15), rand(0, 1.5), rand(0.6, 1.4));
 
   document.addEventListener('mousemove', (e) => {
     cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
