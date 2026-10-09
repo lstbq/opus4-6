@@ -92,32 +92,9 @@
   .sub{ position:relative; z-index:2; max-width:920px; margin:30px auto 0; padding:18px 24px; background:#fff; border:4px solid var(--ink); border-radius:12px; color:var(--text); font-size:13.5px; line-height:2; font-family:var(--round); box-shadow:6px 6px 0 var(--purple); transform:rotate(-.4deg); }
   .sub b{color:var(--purple-deep)}
 
-  /* ================= 图例：缩小 ================= */
-  .legend{ 
-    display: flex; 
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center; 
-    justify-content: center; 
-    margin-top: 10px;
-    position: relative; 
-    z-index: 2; 
-  }
-  .legend > span{ 
-    display: inline-flex; 
-    align-items: center; 
-    background:#fff; 
-    border:3px solid var(--ink);
-    border-radius:999px; 
-    padding:3px 10px;
-    font-size:12px;
-    color:var(--text); 
-    font-weight:700; 
-    font-family:var(--round); 
-    box-shadow:3px 3px 0 var(--gold);
-    transition:.2s; 
-    white-space: nowrap; 
-  }
+  /* ================= 图例 ================= */
+  .legend{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin-top: 10px; position: relative; z-index: 2; }
+  .legend > span{ display: inline-flex; align-items: center; background:#fff; border:3px solid var(--ink); border-radius:999px; padding:3px 10px; font-size:12px; color:var(--text); font-weight:700; font-family:var(--round); box-shadow:3px 3px 0 var(--gold); transition:.2s; white-space: nowrap; }
   .legend > span:nth-child(2){box-shadow:3px 3px 0 var(--cyan);}
   .legend > span:nth-child(3){box-shadow:3px 3px 0 var(--magenta);}
   .legend > span:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--gold); }
@@ -185,33 +162,9 @@
   .filter-bar select:hover { background-color: #fcfaff; border-color: #c4b5fd; }
   .filter-bar select:focus { border-color: #a3c4ff; box-shadow: 0 0 0 4px rgba(163, 196, 255, 0.25); }
 
-  /* ================= 导航栏：统一高度 ================= */
-  .nav{ 
-    display:flex; 
-    gap:16px; 
-    flex-wrap:wrap; 
-    margin-top:20px;
-    position:relative; 
-    z-index:2; 
-    justify-content:center; 
-    align-items: center; 
-  }
-  .nav a{ 
-    text-decoration:none; 
-    padding:9px 26px;
-    font-size:14px;
-    font-weight:800; 
-    letter-spacing:1px; 
-    color:var(--ink); 
-    background:var(--gold); 
-    border:4px solid var(--ink); 
-    border-radius:999px; 
-    font-family:var(--round); 
-    transition:.2s; 
-    box-shadow:6px 6px 0 var(--ink); 
-    position:relative; 
-    overflow:hidden; 
-  }
+  /* ================= 导航栏 ================= */
+  .nav{ display:flex; gap:16px; flex-wrap:wrap; margin-top:20px; position:relative; z-index:2; justify-content:center; align-items: center; }
+  .nav a{ text-decoration:none; padding:9px 26px; font-size:14px; font-weight:800; letter-spacing:1px; color:var(--ink); background:var(--gold); border:4px solid var(--ink); border-radius:999px; font-family:var(--round); transition:.2s; box-shadow:6px 6px 0 var(--ink); position:relative; overflow:hidden; }
   .nav a:nth-child(1){background:var(--gold);}
   .nav a:nth-child(2){background:var(--magenta); color:#fff;}
   .nav a:nth-child(3){background:var(--cyan);}
@@ -221,7 +174,6 @@
   .nav a:hover{ transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--purple); animation:shake .3s ease-in-out; }
   @keyframes shake{ 0%,100%{transform:translate(-3px,-3px) rotate(0);} 25%{transform:translate(-4px,-4px) rotate(-1.5deg);} 75%{transform:translate(-2px,-2px) rotate(1.5deg);} }
 
-  /* 死了警告 */
   .nav .warn-tag {
     display: inline-flex;
     align-items: center;
@@ -261,9 +213,7 @@
   tbody tr:last-child td{border-bottom:none}
   td.num,th.num{font-variant-numeric:tabular-nums; font-size:14.5px; font-weight:700;}
 
-  /* ================== 关键修改：表头字号统一 ================== */
   td.name { font-family:var(--round); font-size:18px; font-weight:800; letter-spacing:.5px; position:relative; }
-  /* 覆盖表头第一列的字号，强制和其他表头一致 */
   th:first-child { font-family:var(--round); font-size:13.5px; font-weight:800; letter-spacing:1.5px; position:relative; }
 
   td.name a{ font-family:var(--round); font-size:18px; font-weight:800; color:var(--name-color); text-decoration:none; transition:.15s; position:relative; display:inline-block; letter-spacing:.5px; }
@@ -325,9 +275,73 @@
     .nav a{padding:9px 20px; font-size:13px}
     .sub{font-size:12.5px; padding:14px 16px; transform:none;}
   }
+
+  /* ============ 自定义鼠标指针 ============ */
+  * { cursor: none !important; }
+
+  #custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    width: 0; height: 0;
+  }
+  .cursor-arrow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 26px; height: 26px;
+    transform: rotate(-10deg);
+    filter: drop-shadow(2px 2px 0 #e83a6b); /* 洋红阴影 */
+  }
+  .cursor-text {
+    position: absolute;
+    top: 22px; left: 28px;
+    font-family: "Arial Black", "Microsoft YaHei", sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    white-space: nowrap;
+    transform: rotate(-6deg);
+  }
+  .cursor-text span {
+    display: inline-block;
+    color: #f7a8c0;
+    -webkit-text-stroke: 5px #1a1420;
+    paint-order: stroke fill;
+    animation: charBreathe 0.8s ease-in-out infinite alternate;
+  }
+  .cursor-text span:nth-child(1) { animation-duration: 0.7s; animation-delay: 0s; }
+  .cursor-text span:nth-child(2) { animation-duration: 1.0s; animation-delay: 0.2s; }
+  .cursor-text span:nth-child(3) { animation-duration: 0.8s; animation-delay: 0.4s; }
+  .cursor-text span:nth-child(4) { animation-duration: 1.1s; animation-delay: 0.1s; }
+  @keyframes charBreathe {
+    0%   { transform: scale(0.75) translateY(0); }
+    100% { transform: scale(1.15) translateY(-2px); }
+  }
+  .cursor-star {
+    position: absolute;
+    animation: twinkle 0.8s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+  @keyframes twinkle {
+    0%   { opacity: 0.15; transform: scale(0.4); }
+    100% { opacity: 1;    transform: scale(1.2); }
+  }
 </style>
 </head>
 <body>
+
+  <!-- 自定义光标 -->
+  <div id="custom-cursor">
+    <svg class="cursor-arrow" viewBox="0 0 26 26">
+      <!-- 黑填充 + 金描边 -->
+      <path d="M4 2 L22 13 L13 15 L11 24 Z" fill="#1a1420" stroke="#f5c842" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+    <div class="cursor-text">
+      <span>ド</span><span>キ</span><span>ド</span><span>キ</span>
+    </div>
+    <div id="star-container" style="position:absolute; top:0; left:0; width:0; height:0;"></div>
+  </div>
+
 <div class="wrap">
 
   <header>
@@ -361,14 +375,12 @@
       已按按次价格从低到高排序；按量站无按次价，按按量输入从低到高排序。
     </div>
     
-    <!-- 缩小后的图例 -->
     <div class="legend">
       <span><span class="dot" style="background:#4caf50"></span>绿 = 极便宜</span>
       <span><span class="dot" style="background:#3ac8e8"></span>蓝 = 便宜</span>
       <span><span class="dot" style="background:#f5c842"></span>黄 = 中等偏便宜</span>
     </div>
 
-    <!-- 过滤器工具栏 -->
     <div class="filter-bar">
       <input id="search" type="search" placeholder="搜索站点名称...">
       <select id="filterStatus">
@@ -388,7 +400,6 @@
       </select>
     </div>
 
-    <!-- 导航栏 + “死了”警告合并到一行，且高度一致 -->
     <div class="nav">
       <a href="#dual">一、按次 &amp; 按量</a>
       <a href="#percall">二、按次</a>
@@ -542,6 +553,7 @@
 </div>
 
 <script>
+  // ========== 表格筛选逻辑 ==========
   const search = document.getElementById('search');
   const filterStatus = document.getElementById('filterStatus');
   const filterSign = document.getElementById('filterSign');
@@ -553,7 +565,6 @@
     const statusVal = filterStatus.value;
     const signVal = filterSign.value;
     const rechargeVal = filterRecharge.value;
-    
     let total = 0;
 
     document.querySelectorAll('section').forEach(function (section) {
@@ -561,7 +572,6 @@
       section.querySelectorAll('tbody tr').forEach(function (tr) {
         let ok = true;
         const t = tr.textContent;
-
         if (q && !t.toLowerCase().includes(q)) ok = false;
         if (ok && statusVal === 'alive') {
           if (t.includes('死了') || t.includes('已死') || t.includes('没了')) ok = false;
@@ -574,7 +584,6 @@
         if (ok && rechargeVal !== 'all') {
           if (!t.includes(rechargeVal + '起充')) ok = false;
         }
-
         tr.style.display = ok ? '' : 'none';
         if (ok) visible++;
       });
@@ -584,7 +593,6 @@
 
     const cntEl = document.getElementById('cnt');
     if(cntEl) cntEl.textContent = '当前显示 ' + total + ' 个站';
-    
     empty.classList.toggle('show', total === 0);
   }
 
@@ -592,8 +600,51 @@
   filterStatus.addEventListener('change', apply);
   filterSign.addEventListener('change', apply);
   filterRecharge.addEventListener('change', apply);
-  
   apply();
+
+  // ========== 自定义光标逻辑 ==========
+  const cursor = document.getElementById('custom-cursor');
+  const starContainer = document.getElementById('star-container');
+
+  const starPath = 'M12 0 L13.2 10.8 L22 12 L13.2 13.2 L12 24 L10.8 13.2 L2 12 L10.8 10.8 Z';
+  
+  function createStar(x, y, size, delay, duration) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'cursor-star');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', starPath);
+    path.setAttribute('fill', '#f5c842');
+    path.setAttribute('stroke', 'none');
+    svg.appendChild(path);
+
+    svg.style.left = x + 'px';
+    svg.style.top = y + 'px';
+    svg.style.width = size + 'px';
+    svg.style.height = size + 'px';
+    svg.style.animationDelay = delay + 's';
+    svg.style.animationDuration = duration + 's';
+    starContainer.appendChild(svg);
+  }
+
+  function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // 全局星星
+  for (let i = 0; i < 12; i++) {
+    createStar(rand(-10, 160), rand(-10, 75), rand(8, 14), rand(0, 1.5), rand(0.6, 1.4));
+  }
+  // 右下角加密
+  for (let i = 0; i < 16; i++) {
+    createStar(rand(100, 175), rand(40, 85), rand(7, 15), rand(0, 1.5), rand(0.6, 1.4));
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+  document.addEventListener('mouseleave', () => cursor.style.display = 'none');
+  document.addEventListener('mouseenter', () => cursor.style.display = 'block');
 </script>
 </body>
 </html>
