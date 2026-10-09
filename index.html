@@ -58,12 +58,12 @@
   }
 
   .manga-title-container{ position:relative; z-index:2; text-align:center; padding:20px 0 10px; user-select:none; }
-  .title-main{ display:inline-flex; flex-direction:column; align-items:center; gap:4px; position:relative; transform:rotate(-2deg); }
+  .title-main{ display:inline-flex; flex-direction:column; align-items:center; gap:4px; position:relative; transform:rotate(-2deg); z-index:20; }
   .title-top{ font-family:'ZCOOL KuaiLe', cursive; font-size:72px; font-weight:900; line-height:1; color:#1a1420; text-shadow: 3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 6px 6px 0 #e83a6b, 9px 9px 0 #1a1420; letter-spacing:4px; -webkit-text-stroke:2px #1a1420; paint-order:stroke fill; animation:titleShake 3s ease-in-out infinite; }
   .title-bottom{ font-family:'ZCOOL KuaiLe', cursive; font-size:50px; font-weight:900; line-height:1.1; color:#d42a2a; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 5px 5px 0 #1a1420, 7px 7px 0 rgba(123,45,142,.6); letter-spacing:6px; -webkit-text-stroke:2px #1a1420; paint-order:stroke fill; margin-top:6px; }
   @keyframes titleShake{ 0%, 100%{transform:translate(0,0) rotate(0deg);} 30%{transform:translate(-2px,-1px) rotate(-1deg);} 60%{transform:translate(2px,1px) rotate(1deg);} }
 
-  .onomatopoeia{ position:absolute; font-family:'ZCOOL KuaiLe', cursive; color:#1a1420; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 4px 4px 0 #e83a6b; pointer-events:none; z-index:3; font-weight:900; }
+  .onomatopoeia{ position:absolute; font-family:'ZCOOL KuaiLe', cursive; color:#1a1420; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 4px 4px 0 #e83a6b; pointer-events:none; z-index:1; font-weight:900; }
   .onoma-1{ top:-10px; left:5%; font-size:38px; transform:rotate(-20deg); animation:floatA 2.2s ease-in-out infinite; }
   .onoma-2{ top:-5px; right:8%; font-size:32px; color:#d42a2a; text-shadow:2px 2px 0 #fff,-2px -2px 0 #fff,4px 4px 0 #1a1420; transform:rotate(15deg); animation:floatB 2.6s ease-in-out infinite; }
   .onoma-3{ bottom:15px; left:12%; font-size:28px; transform:rotate(10deg); color:#7b2d8e; text-shadow:2px 2px 0 #fff,-2px -2px 0 #fff,4px 4px 0 #f5c842; animation:floatC 2.8s ease-in-out infinite; }
@@ -71,7 +71,7 @@
   .onoma-5{ top:35%; left:2%; font-size:24px; color:#1a1420; transform:rotate(-35deg); animation:floatB 3s ease-in-out infinite 0.5s; }
   .onoma-6{ top:30%; right:2%; font-size:30px; color:#e83a6b; text-shadow:2px 2px 0 #fff,-2px -2px 0 #fff,4px 4px 0 #1a1420; transform:rotate(25deg); animation:floatC 2.1s ease-in-out infinite 0.8s; }
   
-  .symbol{ position:absolute; font-family:'ZCOOL KuaiLe', cursive; pointer-events:none; z-index:3; }
+  .symbol{ position:absolute; font-family:'ZCOOL KuaiLe', cursive; pointer-events:none; z-index:1; }
   .symbol-1{ top:0px; left:28%; font-size:30px; color:#e83a6b; transform:rotate(-10deg); animation:floatA 2.5s ease-in-out infinite 0.2s; }
   .symbol-2{ top:10px; right:30%; font-size:34px; color:#f5c842; transform:rotate(20deg); animation:floatB 2.3s ease-in-out infinite 0.6s; }
   .symbol-3{ bottom:5px; left:45%; font-size:28px; color:#3ac8e8; transform:rotate(-5deg); animation:floatC 2.7s ease-in-out infinite 0.4s; }
@@ -84,11 +84,11 @@
   
   .gogogo-top{ position:absolute; top:12px; left:50%; transform:translateX(-50%); font-family:var(--round); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:14px; opacity:.3; z-index:2; white-space:nowrap; pointer-events:none; }
 
-  .chibi-giorno{ position:absolute; top:20px; right:24px; width:220px; height:220px; z-index:5; display:flex; align-items:center; justify-content:center; background:transparent; border:none; box-shadow:none; overflow:hidden; transition:.3s; cursor:pointer; }
+  .chibi-giorno{ position:absolute; top:12px; right:16px; width:180px; height:180px; z-index:5; display:flex; align-items:center; justify-content:center; background:transparent; border:none; box-shadow:none; overflow:hidden; transition:.3s; cursor:pointer; }
   .chibi-giorno:hover{ transform:scale(1.08) rotate(-3deg); }
   .chibi-giorno img{ width:100%; height:100%; object-fit: contain; object-position: center; display:block; mix-blend-mode: multiply; }
 
-  .jojo-stamp{ position:absolute; top:250px; right:30px; z-index:5; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:16px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
+  .jojo-stamp{ position:absolute; top:205px; right:22px; z-index:5; width:72px; height:72px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:15px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
   @keyframes stampPulse{ 0%,100%{transform:rotate(-12deg) scale(1);} 50%{transform:rotate(-12deg) scale(1.06);} }
 
   .sub{ position:relative; z-index:2; max-width:920px; margin:30px auto 0; padding:18px 24px; background:#fff; border:4px solid var(--ink); border-radius:12px; color:var(--text); font-size:13.5px; line-height:2; font-family:var(--round); box-shadow:6px 6px 0 var(--purple); transform:rotate(-.4deg); text-align: left; }
@@ -199,20 +199,19 @@
   /* ============ Sprite 桌宠 ============ */
   #pet {
     position: fixed;
-    right: 40px;
-    bottom: 30px;
-    width: 150px;
-    height: 150px;
-    z-index: 9998;
+    right: 16px;
+    bottom: 70px;
+    width: 130px;
+    height: 130px;
+    z-index: 2147483000;
     pointer-events: auto;
     cursor: pointer;
     user-select: none;
-    transition: left 2.5s cubic-bezier(0.42, 0, 0.58, 1),
-                bottom 0.5s ease-out;
-    filter: drop-shadow(0 8px 12px rgba(26,20,32,.28));
-    will-change: left, bottom;
+    -webkit-user-select: none;
+    touch-action: none;
+    background: transparent;
+    filter: drop-shadow(0 6px 10px rgba(26,20,32,.28));
   }
-  #pet.dragging { transition: none; }
   #pet canvas {
     width: 100%;
     height: 100%;
@@ -220,32 +219,57 @@
     pointer-events: none;
     image-rendering: -webkit-optimize-contrast;
   }
+  #pet-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b5a7a;
+    font-size: 11px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    pointer-events: none;
+  }
+  #pet-loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f5c842;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: petSpin 0.8s linear infinite;
+  }
+  @keyframes petSpin { to { transform: rotate(360deg); } }
+
   .pet-heart {
     position: fixed;
     pointer-events: none;
-    font-size: 22px;
-    z-index: 9999;
+    font-size: 20px;
+    z-index: 2147483001;
     animation: heartFly 1.2s ease-out forwards;
-    will-change: transform, opacity;
   }
   @keyframes heartFly {
-    0%   { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
-    100% { opacity: 0; transform: translate(var(--dx), -110px) scale(1.3) rotate(var(--rot)); }
+    0%   { opacity: 1; transform: translate(0, 0) scale(0.6); }
+    100% { opacity: 0; transform: translate(var(--dx), -100px) scale(1.3) rotate(var(--rot)); }
   }
 
+  /* ============ 响应式 ============ */
   @media (max-width:900px){
-    .title-top{font-size:44px;} .title-bottom{font-size:32px;}
-    .chibi-giorno{width:160px;height:160px;top:16px;right:18px;}
-    .jojo-stamp{top:185px; right:25px; width:64px; height:64px; font-size:13px;}
-    #pet { width: 110px; height: 110px; right: 20px; bottom: 20px; }
+    .title-top{font-size:44px;}
+    .title-bottom{font-size:32px;}
+    .chibi-giorno{ width: 140px; height: 140px; top: 10px; right: 14px; }
+    .jojo-stamp{ top: 160px; right: 20px; width: 60px; height: 60px; font-size: 12px; }
+    #pet { width: 110px; height: 110px; right: 14px; bottom: 70px; }
   }
   @media (max-width:640px){
     .wrap{padding:14px 12px}
     header{padding:38px 18px 26px}
-    .title-top{font-size:28px; letter-spacing:2px;}
+    .title-top{font-size:30px; letter-spacing:1px;}
     .title-bottom{font-size:20px; letter-spacing:3px;}
-    .chibi-giorno{width:110px;height:110px;top:10px;right:12px;}
-    .jojo-stamp{top:130px; right:18px; width:48px; height:48px; font-size:10px;}
+    .manga-title-container{padding:10px 0 5px;}
+    .chibi-giorno{ width: 90px; height: 90px; top: 8px; right: 10px; }
+    .jojo-stamp{ top: 106px; right: 14px; width: 44px; height: 44px; font-size: 9px; }
     section{padding:16px}
     h2{font-size:17px}
     thead th{padding:10px 10px; font-size:12px}
@@ -255,7 +279,7 @@
     .badge{font-size:10.5px}
     .nav a{padding:9px 20px; font-size:13px}
     .sub{font-size:12.5px; padding:14px 16px; transform:none;}
-    #pet { width: 90px; height: 90px; right: 14px; bottom: 14px; }
+    #pet { width: 100px; height: 100px; right: 12px; bottom: 70px; }
   }
 </style>
 </head>
@@ -275,6 +299,7 @@
   <!-- Sprite 桌宠 -->
   <div id="pet" title="点我一下">
     <canvas id="pet-canvas"></canvas>
+    <div id="pet-loading"></div>
   </div>
 
 <div class="wrap">
@@ -565,102 +590,89 @@
   /* ========== Sprite 桌宠 ========== */
   (function() {
     const canvas = document.getElementById('pet-canvas');
-    const ctx = canvas.getContext('2d');
     const petEl = document.getElementById('pet');
+    const loadingEl = document.getElementById('pet-loading');
+    if (!canvas || !petEl) return;
+    const ctx = canvas.getContext('2d');
 
-    // 8 列网格
     const COLS = 8;
-    // 每行动画：行索引 + 帧数 + 播放速度(fps)
+    const ROWS = 11;
     const ANIM = {
-      idle:    { row: 0,  frames: 7, fps: 3 },  // 待机
-      drink:   { row: 1,  frames: 8, fps: 6 },  // 喝饮料
-      type:    { row: 2,  frames: 8, fps: 8 },  // 打字
-      stand:   { row: 3,  frames: 4, fps: 3 },  // 站立
-      walk:    { row: 4,  frames: 5, fps: 6 },  // 走动
-      roll:    { row: 5,  frames: 8, fps: 8 },  // 翻滚
-      coffee:  { row: 6,  frames: 6, fps: 6 },  // 端咖啡
-      type2:   { row: 7,  frames: 6, fps: 8 },  // 打字（第二种）
-      burger:  { row: 8,  frames: 5, fps: 6 },  // 吃汉堡
-      look1:   { row: 9,  frames: 8, fps: 4 },  // 环视 1
-      look2:   { row: 10, frames: 8, fps: 4 }   // 环视 2
+      idle:   { row: 0,  frames: 7, fps: 3 },
+      drink:  { row: 1,  frames: 8, fps: 6 },
+      type:   { row: 2,  frames: 8, fps: 8 },
+      stand:  { row: 3,  frames: 4, fps: 3 },
+      walk:   { row: 4,  frames: 5, fps: 6 },
+      roll:   { row: 5,  frames: 8, fps: 8 },
+      coffee: { row: 6,  frames: 6, fps: 6 },
+      type2:  { row: 7,  frames: 6, fps: 8 },
+      burger: { row: 8,  frames: 5, fps: 6 },
+      look1:  { row: 9,  frames: 8, fps: 4 },
+      look2:  { row: 10, frames: 8, fps: 4 }
     };
 
     const img = new Image();
-    img.crossOrigin = 'anonymous';
     img.src = 'spritesheet.webp';
 
     let cellW = 0, cellH = 0;
+    let currentAnim = null, currentFrame = 0;
+    let lastFrameTime = 0, animEndTime = 0;
+    let rafId = null, ready = false;
 
     img.onload = () => {
-      // 每格尺寸（取整，避免小数引起抖动）
       cellW = Math.floor(img.naturalWidth / COLS);
-      cellH = Math.floor(img.naturalHeight / 11); // 11 行
-      // 用原图的一格大小做 canvas 分辨率，保证清晰
+      cellH = Math.floor(img.naturalHeight / ROWS);
       canvas.width = cellW;
       canvas.height = cellH;
-
+      ready = true;
+      if (loadingEl) loadingEl.style.display = 'none';
       play('idle');
       scheduleRandom();
     };
 
     img.onerror = () => {
-      console.warn('spritesheet.webp 加载失败，检查路径是否和 index.html 同级');
-      // 加载失败时画一个简单的占位
-      ctx.fillStyle = '#f5c842';
-      ctx.fillRect(0, 0, canvas.width || 100, canvas.height || 100);
+      if (loadingEl) {
+        loadingEl.style.color = '#d42a2a';
+        loadingEl.style.fontSize = '10px';
+        loadingEl.textContent = '图挂了';
+      }
     };
-
-    let currentAnim = null;
-    let currentFrame = 0;
-    let lastFrameTime = 0;
-    let animEndTime = 0;
-    let rafId = null;
 
     function play(name) {
       const a = ANIM[name];
       if (!a) return;
       currentAnim = a;
-      currentAnim._name = name;
       currentFrame = 0;
       lastFrameTime = 0;
-      // 非 idle 播完一轮回到 idle
       animEndTime = (name === 'idle') ? 0 : performance.now() + (a.frames / a.fps) * 1000;
       if (!rafId) rafId = requestAnimationFrame(loop);
     }
 
     function loop(now) {
-      if (!currentAnim || !cellW) {
-        rafId = requestAnimationFrame(loop);
-        return;
-      }
-
+      rafId = requestAnimationFrame(loop);
+      if (!ready || !currentAnim) return;
       const interval = 1000 / currentAnim.fps;
       if (now - lastFrameTime >= interval) {
         lastFrameTime = now;
         currentFrame = (currentFrame + 1) % currentAnim.frames;
       }
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const sx = currentFrame * cellW;
       const sy = currentAnim.row * cellH;
       ctx.drawImage(img, sx, sy, cellW, cellH, 0, 0, canvas.width, canvas.height);
-
       if (animEndTime && now >= animEndTime) {
         play('idle');
         scheduleRandom();
       }
-      rafId = requestAnimationFrame(loop);
     }
 
-    // 随机切换动作
     let randomTimer = null;
     function scheduleRandom() {
       clearTimeout(randomTimer);
-      const delay = 3500 + Math.random() * 5000;
       randomTimer = setTimeout(() => {
         const actions = ['drink', 'type', 'walk', 'roll', 'coffee', 'type2', 'burger', 'look1', 'look2'];
         play(actions[Math.floor(Math.random() * actions.length)]);
-      }, delay);
+      }, 3500 + Math.random() * 5000);
     }
 
     // 点击互动
@@ -690,30 +702,54 @@
     }
 
     // 拖拽
-    let dragOX = 0, dragOY = 0;
-    petEl.addEventListener('pointerdown', (e) => {
+    let dragOX = 0, dragOY = 0, dragPointerId = null;
+    function startDrag(e) {
       isDragging = false;
       const rect = petEl.getBoundingClientRect();
-      dragOX = e.clientX - rect.left;
-      dragOY = e.clientY - rect.top;
-      petEl.classList.add('dragging');
-      petEl.setPointerCapture(e.pointerId);
-    });
-    petEl.addEventListener('pointermove', (e) => {
-      if (!petEl.hasPointerCapture(e.pointerId)) return;
+      const cx = e.clientX !== undefined ? e.clientX : (e.touches ? e.touches[0].clientX : 0);
+      const cy = e.clientY !== undefined ? e.clientY : (e.touches ? e.touches[0].clientY : 0);
+      dragOX = cx - rect.left;
+      dragOY = cy - rect.top;
+      if (e.pointerId !== undefined) {
+        dragPointerId = e.pointerId;
+        try { petEl.setPointerCapture(e.pointerId); } catch(err) {}
+      }
+      e.preventDefault();
+    }
+    function moveDrag(e) {
+      const cx = e.clientX !== undefined ? e.clientX : (e.touches ? e.touches[0].clientX : 0);
+      const cy = e.clientY !== undefined ? e.clientY : (e.touches ? e.touches[0].clientY : 0);
+      if (!cx && !cy) return;
       isDragging = true;
-      const nx = Math.max(0, Math.min(window.innerWidth - petEl.offsetWidth, e.clientX - dragOX));
-      const ny = Math.max(0, Math.min(window.innerHeight - petEl.offsetHeight, e.clientY - dragOY));
+      const nx = Math.max(0, Math.min(window.innerWidth - petEl.offsetWidth, cx - dragOX));
+      const ny = Math.max(0, Math.min(window.innerHeight - petEl.offsetHeight, cy - dragOY));
       petEl.style.left = nx + 'px';
       petEl.style.top = ny + 'px';
       petEl.style.right = 'auto';
       petEl.style.bottom = 'auto';
-    });
-    petEl.addEventListener('pointerup', (e) => {
-      petEl.classList.remove('dragging');
-      petEl.releasePointerCapture(e.pointerId);
+      e.preventDefault();
+    }
+    function endDrag(e) {
+      if (e && e.pointerId !== undefined && dragPointerId !== null) {
+        try { petEl.releasePointerCapture(dragPointerId); } catch(err) {}
+      }
+      dragPointerId = null;
       setTimeout(() => { isDragging = false; }, 100);
-    });
+    }
+
+    if (window.PointerEvent) {
+      petEl.addEventListener('pointerdown', startDrag);
+      petEl.addEventListener('pointermove', moveDrag);
+      petEl.addEventListener('pointerup', endDrag);
+      petEl.addEventListener('pointercancel', endDrag);
+    } else {
+      petEl.addEventListener('touchstart', startDrag, { passive: false });
+      petEl.addEventListener('touchmove', moveDrag, { passive: false });
+      petEl.addEventListener('touchend', endDrag);
+      petEl.addEventListener('mousedown', startDrag);
+      document.addEventListener('mousemove', moveDrag);
+      document.addEventListener('mouseup', endDrag);
+    }
   })();
 </script>
 </body>
