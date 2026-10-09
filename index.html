@@ -84,13 +84,43 @@
   .manga-line{ display:block; width:80%; height:6px; margin:10px auto 0; background:var(--ink); border-radius:999px; transform:rotate(-1deg); box-shadow:0 4px 0 var(--magenta); }
   
   .gogogo-top{ position:absolute; top:12px; left:50%; transform:translateX(-50%); font-family:var(--round); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:14px; opacity:.3; z-index:2; white-space:nowrap; pointer-events:none; }
-  .chibi-giorno{ position:absolute; top:12px; right:16px; width:120px; height:120px; z-index:5; display:flex; align-items:center; justify-content:center; background:var(--gold); border:4px solid var(--ink); border-radius:50%; box-shadow:4px 4px 0 var(--ink), 4px 4px 0 7px var(--purple); overflow:hidden; transition:.3s; cursor:pointer; }
-  .chibi-giorno:hover{ transform:scale(1.08) rotate(-3deg); box-shadow:6px 6px 0 var(--ink), 6px 6px 0 10px var(--magenta); }
-  .chibi-giorno img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; }
+
+  /* ================== 关键修改：去掉布加拉提的圆圈 ================== */
+  .chibi-giorno{ 
+    position:absolute; 
+    top:12px; 
+    right:16px; 
+    width:120px; 
+    height:120px; 
+    z-index:5; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    background:transparent;   /* 去掉金色圆底 */
+    border:none;              /* 去掉黑边框 */
+    border-radius:0;          /* 去掉圆形 */
+    box-shadow:none;          /* 去掉阴影 */
+    overflow:hidden; 
+    transition:.3s; 
+    cursor:pointer; 
+  }
+  .chibi-giorno:hover{ 
+    transform:scale(1.08) rotate(-3deg); 
+    box-shadow:none;          /* 悬停也不加阴影 */
+  }
+  .chibi-giorno img{ 
+    width:100%; 
+    height:100%; 
+    object-fit:cover; 
+    object-position:center 20%; 
+    display:block; 
+  }
+  /* ================================================================= */
+
   .jojo-stamp{ position:absolute; top:142px; right:22px; z-index:5; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:16px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
   @keyframes stampPulse{ 0%,100%{transform:rotate(-12deg) scale(1);} 50%{transform:rotate(-12deg) scale(1.06);} }
 
-  /* ================= 说明文字 + 图例（缩小版） ================= */
+  /* ================= 说明文字 + 图例 ================= */
   .sub{ 
     position:relative; 
     z-index:2; 
@@ -110,7 +140,6 @@
   }
   .sub b{color:var(--purple-deep)}
   
-  /* 图例容器靠左 */
   .legend{ 
     display: flex; 
     flex-wrap: wrap; 
@@ -122,46 +151,31 @@
     z-index: 2; 
   }
   
-  /* 圆体 + 缩小一号 */
   .legend > span{ 
     display: inline-flex; 
     align-items: center; 
-    border: 2px solid;          /* 边框变细：3px -> 2px */
+    border: 2px solid; 
     border-radius: 999px; 
-    padding: 2px 12px;          /* 内边距缩小：3px 16px -> 2px 12px */
-    font-size: 12px;            /* 字体缩小：14px -> 12px */
-    color: #fff;                /* 白色文字 */
+    padding: 2px 12px; 
+    font-size: 12px; 
+    color: #fff; 
     font-weight: 800; 
-    font-family: var(--round);  /* 圆体 */
+    font-family: var(--round); 
     white-space: nowrap; 
     letter-spacing: 1px; 
     background: var(--ink); 
     transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
   }
   
-  /* 第一项：绿边，绿色阴影 */
-  .legend > span:nth-child(1) { 
-    border-color: var(--green); 
-    box-shadow: 2px 2px 0 var(--green); /* 阴影缩小：3px 3px -> 2px 2px */
-  }
-  /* 第二项：蓝边，蓝色阴影 */
-  .legend > span:nth-child(2) { 
-    border-color: var(--cyan); 
-    box-shadow: 2px 2px 0 var(--cyan); 
-  }
-  /* 第三项：黄边，黄色阴影 */
-  .legend > span:nth-child(3) { 
-    border-color: var(--gold); 
-    box-shadow: 2px 2px 0 var(--gold); 
-  }
+  .legend > span:nth-child(1) { border-color: var(--green); box-shadow: 2px 2px 0 var(--green); }
+  .legend > span:nth-child(2) { border-color: var(--cyan); box-shadow: 2px 2px 0 var(--cyan); }
+  .legend > span:nth-child(3) { border-color: var(--gold); box-shadow: 2px 2px 0 var(--gold); }
   
-  /* 悬停上浮 */
   .legend > span:hover{ transform: translate(-2px, -2px); }
   .legend > span:nth-child(1):hover { box-shadow: 4px 4px 0 var(--green); }
   .legend > span:nth-child(2):hover { box-shadow: 4px 4px 0 var(--cyan); }
   .legend > span:nth-child(3):hover { box-shadow: 4px 4px 0 var(--gold); }
   
-  /* 小圆点缩小 */
   .legend .dot{ width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; flex-shrink: 0; border: 1.5px solid #fff; box-shadow: inset 0 0 2px rgba(0,0,0,0.5); }
 
   /* ================= 过滤器工具栏 ================= */
@@ -280,11 +294,28 @@
   td.name { font-family:var(--round); font-size:18px; font-weight:800; letter-spacing:.5px; position:relative; }
   th:first-child { font-family:var(--round); font-size:13.5px; font-weight:800; letter-spacing:1.5px; position:relative; }
 
-  td.name a{ font-family:var(--round); font-size:18px; font-weight:800; color:var(--name-color); text-decoration:none; transition:.15s; position:relative; display:inline-block; letter-spacing:.5px; }
+  td.name a{ 
+    font-family:var(--round); 
+    font-size:18px; 
+    font-weight:800; 
+    color:var(--name-color); 
+    text-shadow: 2px 2px 0 var(--gold);
+    text-decoration:none; 
+    transition:.15s; 
+    position:relative; 
+    display:inline-block; 
+    letter-spacing:.5px; 
+  }
   td.name a::after{ content:"ゴゴゴ"; position:absolute; top:-14px; left:100%; margin-left:6px; font-size:10px; font-family:var(--round); font-weight:800; color:var(--red); letter-spacing:-2px; opacity:0; transition:.25s; pointer-events:none; }
   td.name a:hover::after{opacity:1; top:-16px;}
-  td.name a:hover{ color:var(--magenta); text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:3px; }
-  tr.is-dead .name a{color:#a89bb8;}
+  td.name a:hover{ 
+    color:var(--magenta); 
+    text-shadow: 2px 2px 0 var(--gold); 
+    text-decoration:underline; 
+    text-decoration-thickness:3px; 
+    text-underline-offset:3px; 
+  }
+  tr.is-dead .name a{color:#a89bb8;text-shadow:none;}
 
   .badge{ display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:800; line-height:1.7; margin-right:5px; border:3px solid var(--ink); white-space:nowrap; font-family:var(--round); letter-spacing:.5px; }
   .badge.danger{background:var(--red); color:#fff;}
