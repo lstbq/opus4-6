@@ -85,7 +85,7 @@
   
   .gogogo-top{ position:absolute; top:12px; left:50%; transform:translateX(-50%); font-family:var(--round); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:14px; opacity:.3; z-index:2; white-space:nowrap; pointer-events:none; }
 
-  /* ================== 关键修改：去掉布加拉提的圆圈 ================== */
+  /* ================== 布加拉提头像：去掉圆圈 + 修复色差 ================== */
   .chibi-giorno{ 
     position:absolute; 
     top:12px; 
@@ -98,7 +98,6 @@
     justify-content:center; 
     background:transparent;   /* 去掉金色圆底 */
     border:none;              /* 去掉黑边框 */
-    border-radius:0;          /* 去掉圆形 */
     box-shadow:none;          /* 去掉阴影 */
     overflow:hidden; 
     transition:.3s; 
@@ -106,7 +105,7 @@
   }
   .chibi-giorno:hover{ 
     transform:scale(1.08) rotate(-3deg); 
-    box-shadow:none;          /* 悬停也不加阴影 */
+    box-shadow:none; 
   }
   .chibi-giorno img{ 
     width:100%; 
@@ -114,6 +113,8 @@
     object-fit:cover; 
     object-position:center 20%; 
     display:block; 
+    mix-blend-mode: multiply; /* 关键：将图片自带的灰白背景融入页面米黄底色 */
+    border-radius: 50%;       /* 关键：裁掉方形边角，只留圆形头像 */
   }
   /* ================================================================= */
 
