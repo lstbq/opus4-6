@@ -85,20 +85,20 @@
   
   .gogogo-top{ position:absolute; top:12px; left:50%; transform:translateX(-50%); font-family:var(--round); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:14px; opacity:.3; z-index:2; white-space:nowrap; pointer-events:none; }
 
-  /* ================== 布加拉提头像 ================== */
+  /* ================== 布加拉提头像：放大尺寸 ================== */
   .chibi-giorno{ 
     position:absolute; 
-    top:12px; 
-    right:16px; 
-    width:120px; 
-    height:120px; 
+    top:20px; 
+    right:24px; 
+    width:220px;    /* 放大到 220px */
+    height:220px;   /* 放大到 220px */
     z-index:5; 
     display:flex; 
     align-items:center; 
     justify-content:center; 
-    background:transparent;
-    border:none;
-    box-shadow:none;
+    background:transparent; 
+    border:none; 
+    box-shadow:none; 
     overflow:hidden; 
     transition:.3s; 
     cursor:pointer; 
@@ -113,11 +113,38 @@
     object-fit:cover; 
     object-position:center 20%; 
     display:block; 
-    mix-blend-mode: multiply;
-    border-radius: 50%;
+    mix-blend-mode: multiply; /* 融合背景色差 */
+    border-radius: 50%;       /* 裁成圆形 */
   }
+  /* ================================================================= */
 
-  .jojo-stamp{ position:absolute; top:142px; right:22px; z-index:5; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:16px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
+  /* 印章位置随头像变大而下移，防止被遮住 */
+  .jojo-stamp{ 
+    position:absolute; 
+    top:250px; 
+    right:30px; 
+    z-index:5; 
+    width:80px; 
+    height:80px; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    background:var(--red); 
+    color:#fff; 
+    border:4px solid var(--ink); 
+    border-radius:50%; 
+    font-family:var(--round); 
+    font-size:16px; 
+    font-weight:800; 
+    letter-spacing:1px; 
+    line-height:1; 
+    text-align:center; 
+    transform:rotate(-12deg); 
+    box-shadow:4px 4px 0 var(--ink); 
+    pointer-events:none; 
+    text-shadow:2px 2px 0 var(--ink); 
+    animation:stampPulse 2s ease-in-out infinite; 
+  }
   @keyframes stampPulse{ 0%,100%{transform:rotate(-12deg) scale(1);} 50%{transform:rotate(-12deg) scale(1.06);} }
 
   /* ================= 说明文字 + 图例 ================= */
@@ -347,10 +374,11 @@
   ::-webkit-scrollbar-thumb{background:var(--ink);border:2px solid var(--paper);border-radius:8px;}
   ::-webkit-scrollbar-thumb:hover{background:var(--magenta);}
 
+  /* 响应式：屏幕变小时头像也缩小 */
   @media (max-width:900px){
     .title-top{font-size:44px;} .title-bottom{font-size:32px;}
-    .chibi-giorno{width:90px;height:90px;top:8px;right:10px;}
-    .jojo-stamp{top:108px; right:14px; width:64px; height:64px; font-size:13px;}
+    .chibi-giorno{width:160px;height:160px;top:16px;right:18px;}
+    .jojo-stamp{top:185px; right:25px; width:64px; height:64px; font-size:13px;}
   }
   @media (max-width:640px){
     .wrap{padding:14px 12px}
@@ -358,8 +386,8 @@
     .title-top{font-size:28px; letter-spacing:2px;}
     .title-bottom{font-size:20px; letter-spacing:3px;}
     .manga-title-container{padding:10px 0 5px;}
-    .chibi-giorno{width:66px;height:66px;top:6px;right:8px;border-width:3px;}
-    .jojo-stamp{top:78px; right:10px; width:48px; height:48px; font-size:10px; border-width:3px;}
+    .chibi-giorno{width:110px;height:110px;top:10px;right:12px;}
+    .jojo-stamp{top:130px; right:18px; width:48px; height:48px; font-size:10px;}
     section{padding:16px}
     h2{font-size:17px}
     thead th{padding:10px 10px; font-size:12px}
@@ -440,7 +468,6 @@
   <header>
     <div class="gogogo-top">ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ</div>
     <div class="chibi-giorno" title="Bucciarati · Arrivederci">
-      <!-- 这里已改成 new_image.png -->
       <img src="new_image.png" alt="Bucciarati">
     </div>
     <div class="jojo-stamp">JOJO</div>
