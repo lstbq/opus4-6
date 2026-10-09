@@ -85,7 +85,7 @@
   
   .gogogo-top{ position:absolute; top:12px; left:50%; transform:translateX(-50%); font-family:var(--round); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:14px; opacity:.3; z-index:2; white-space:nowrap; pointer-events:none; }
 
-  /* ================== 布加拉提头像：去掉圆圈 + 修复色差 ================== */
+  /* ================== 布加拉提头像 ================== */
   .chibi-giorno{ 
     position:absolute; 
     top:12px; 
@@ -96,9 +96,9 @@
     display:flex; 
     align-items:center; 
     justify-content:center; 
-    background:transparent;   /* 去掉金色圆底 */
-    border:none;              /* 去掉黑边框 */
-    box-shadow:none;          /* 去掉阴影 */
+    background:transparent;
+    border:none;
+    box-shadow:none;
     overflow:hidden; 
     transition:.3s; 
     cursor:pointer; 
@@ -113,10 +113,9 @@
     object-fit:cover; 
     object-position:center 20%; 
     display:block; 
-    mix-blend-mode: multiply; /* 关键：将图片自带的灰白背景融入页面米黄底色 */
-    border-radius: 50%;       /* 关键：裁掉方形边角，只留圆形头像 */
+    mix-blend-mode: multiply;
+    border-radius: 50%;
   }
-  /* ================================================================= */
 
   .jojo-stamp{ position:absolute; top:142px; right:22px; z-index:5; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--red); color:#fff; border:4px solid var(--ink); border-radius:50%; font-family:var(--round); font-size:16px; font-weight:800; letter-spacing:1px; line-height:1; text-align:center; transform:rotate(-12deg); box-shadow:4px 4px 0 var(--ink); pointer-events:none; text-shadow:2px 2px 0 var(--ink); animation:stampPulse 2s ease-in-out infinite; }
   @keyframes stampPulse{ 0%,100%{transform:rotate(-12deg) scale(1);} 50%{transform:rotate(-12deg) scale(1.06);} }
@@ -441,7 +440,8 @@
   <header>
     <div class="gogogo-top">ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ ゴ</div>
     <div class="chibi-giorno" title="Bucciarati · Arrivederci">
-      <img src="bucciarati.png" alt="Bucciarati">
+      <!-- 这里已改成 new_image.png -->
+      <img src="new_image.png" alt="Bucciarati">
     </div>
     <div class="jojo-stamp">JOJO</div>
 
